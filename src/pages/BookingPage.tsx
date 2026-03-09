@@ -17,67 +17,67 @@ interface BookingPlan {
 const bookingPlans: BookingPlan[] = [
   {
     id: 'single',
-    name: 'ركن التركيز',
-    description: 'طاولة فردية مثالية للدراسة أو العمل عن بُعد مع هدوء تام.',
+    name: 'Focus Corner',
+    description: 'Ideal single table for study or remote work with total peace.',
     price: '25',
-    duration: 'ساعة',
+    duration: 'Hour',
     icon: Coffee,
-    features: ['مقعد مريح وشاحن خاص', 'إنترنت فائق السرعة', 'خصم 10% على المشروبات'],
+    features: ['Comfortable seat & private charger', 'Ultra-fast internet', '10% discount on drinks'],
     color: 'from-[#D4B895] to-[#C3A077]',
   },
   {
     id: 'duo',
-    name: 'جلسة الأصدقاء',
-    description: 'طاولة مريحة تتسع لشخصين إلى 4 أشخاص للحوار والمتعة.',
+    name: "Friends' Spot",
+    description: 'Cozy table for 2 to 4 people, perfect for conversation.',
     price: '45',
-    duration: 'ساعة',
+    duration: 'Hour',
     icon: Users,
-    features: ['إطلالة متميزة', 'خدمة ضيافة سريعة', 'إمكانية حجز مسبق', 'ركن هادئ'],
+    features: ['Premium view', 'Fast hospitality service', 'Pre-booking available', 'Quiet corner'],
     isPopular: true,
     color: 'from-[#8C6239] to-[#6B4423]',
   },
   {
     id: 'meeting',
-    name: 'غرفة الاجتماعات',
-    description: 'مساحة خاصة مجهزة بالكامل للاجتماعات الرسمية أو ورش العمل.',
+    name: 'Meeting Room',
+    description: 'Fully equipped private space for formal meetings or workshops.',
     price: '150',
-    duration: 'ساعة',
+    duration: 'Hour',
     icon: Star,
-    features: ['شاشة عرض ذكية', 'سبورة بيضاء', 'قهوة ضيافة Freeة', 'خصوصية تامة'],
+    features: ['Smart display screen', 'Whiteboard', 'Complimentary coffee', 'Total privacy'],
     color: 'from-[#4A3B32] to-[#2E1F18]',
   }
 ];
 
-// التأكد من أن اسم الدالة هو BookingPage ليتوافق مع Import في App.tsx
+// Ensure the function name is BookingPage to match the import in App.tsx
 export function BookingPage() {
   const navigate = useNavigate();
 
   return (
     <div dir="ltr" className="min-h-screen bg-[#F5F0EB] relative overflow-hidden font-sans pb-12">
-      {/* عناصر الخلفية الزخرفية */}
+      {/* Decorative background elements */}
       <div className="absolute top-[-10%] right-[-5%] w-[50vw] h-[50vw] rounded-full bg-[#E8DCC8] opacity-60 blur-[100px] pointer-events-none" />
       <div className="absolute bottom-[-20%] left-[-10%] w-[60vw] h-[60vw] rounded-full bg-[#D4B895] opacity-40 blur-[120px] pointer-events-none" />
       
-      {/* زر الرجوع */}
+      {/* Back button */}
       <button 
         onClick={() => navigate(-1)}
-        className="fixed right-6 top-24 z-50 p-4 rounded-full bg-white/40 backdrop-blur-xl border border-white/60 shadow-2xl text-[#4A3B32] hover:bg-[#4A3B32] hover:text-white transition-all duration-300 group"
+        className="fixed left-6 top-24 z-50 p-4 rounded-full bg-white/40 backdrop-blur-xl border border-white/60 shadow-2xl text-[#4A3B32] hover:bg-[#4A3B32] hover:text-white transition-all duration-300 group"
       >
-        <ArrowLeft size={28} className="rotate-180 group-hover:translate-x-1 transition-transform" />
+        <ArrowLeft size={28} className="group-hover:-translate-x-1 transition-transform" />
       </button>
 
       <div className="container mx-auto px-4 py-16 relative z-10 max-w-6xl">
-        {/* عنوان الصفحة */}
+        {/* Page Title */}
         <div className="text-center mb-16 space-y-6">
           <h1 className="text-5xl md:text-7xl font-extrabold pb-2 bg-clip-text text-transparent bg-gradient-to-r from-[#4A3B32] via-[#8C6239] to-[#4A3B32] animate-gradient">
-            احجز مساحتك الخاصة
+            Book Your Private Space
           </h1>
           <p className="text-xl md:text-2xl text-[#6B4423]/80 max-w-2xl mx-auto font-medium">
-            اختر الجلسة التي تناسب احتياجك، ودع القهوة والهدوء علينا.
+            Pick the session that fits your needs, and leave the coffee and peace to us.
           </p>
         </div>
 
-        {/* كروت الحجز */}
+        {/* Booking Cards */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-center">
           {bookingPlans.map((plan) => {
             const Icon = plan.icon;
@@ -92,7 +92,7 @@ export function BookingPage() {
               >
                 {plan.isPopular && (
                   <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-[#8C6239] text-white px-6 py-1.5 rounded-full text-sm font-bold shadow-lg">
-                    الأكثر اختياراً
+                    Most Popular
                   </div>
                 )}
 
@@ -124,7 +124,7 @@ export function BookingPage() {
                 <button className={`w-full py-4 rounded-2xl font-black text-lg transition-all ${
                   plan.isPopular ? 'bg-[#8C6239] text-white' : 'bg-[#4A3B32] text-white'
                 }`}>
-                  تأكيد الحجز
+                  Confirm Booking
                 </button>
               </div>
             );
