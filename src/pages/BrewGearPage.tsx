@@ -27,7 +27,7 @@ export function BrewGear() {
   const [activeCategory, setActiveCategory] = useState("الكل");
 
   return (
-    <div dir="rtl" className="min-h-screen bg-[#FAF7F2] relative overflow-hidden font-sans pb-20">
+    <div dir="ltr" className="min-h-screen bg-[#FAF7F2] relative overflow-hidden font-sans pb-20">
       {/* Background Fluid Shapes */}
       <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none z-0">
         <div className="absolute top-[-10%] left-[-10%] w-[40vw] h-[40vw] bg-[#EADBC8] rounded-full blur-[100px] opacity-40 animate-pulse" />
@@ -117,7 +117,7 @@ export function BrewGear() {
                 <div className="flex items-center justify-between mt-auto">
                   <div className="flex flex-col">
                     <span className="text-sm text-[#6B4423]/60">السعر</span>
-                    <span className="text-2xl font-black text-[#4A3B32]">{product.price} <small className="text-sm font-medium">ر.س</small></span>
+                    <span className="text-2xl font-black text-[#4A3B32]">{product.price} <small className="text-sm font-medium">SAR</small></span>
                   </div>
                   
                   <button className="p-4 rounded-2xl bg-[#4A3B32] text-white hover:bg-[#8C6239] shadow-lg shadow-[#4A3B32]/20 transition-all active:scale-95 group/btn">
@@ -136,7 +136,7 @@ export function BrewGear() {
               <h2 className="text-3xl font-bold">هل أنت باريستا منزلي جديد؟</h2>
               <p className="text-[#D4B895] max-w-md">نحن هنا لمساعدتك في اختيار الأدوات المناسبة لميزانيتك وذوقك في القهوة.</p>
               <button className="px-8 py-3 bg-[#D4B895] text-[#2E1F18] rounded-xl font-bold hover:bg-white transition-colors">
-                طلب استشارة مجانية
+                طلب استشارة Freeة
               </button>
             </div>
             <div className="flex gap-8 opacity-50">

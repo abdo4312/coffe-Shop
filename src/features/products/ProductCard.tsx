@@ -109,7 +109,7 @@ export function ProductCard({ product, className }: ProductCardProps) {
         {!product.inStock && (
           <div className="absolute inset-0 bg-black/70 backdrop-blur-md flex items-center justify-center">
             <span className="text-white font-bold text-2xl tracking-widest drop-shadow-lg">
-              نفذت الكمية
+              نفذت Quantity
             </span>
           </div>
         )}
@@ -173,7 +173,7 @@ export function ProductCard({ product, className }: ProductCardProps) {
                 ? "bg-neutral-900 hover:bg-black hover:scale-110"
                 : "bg-neutral-200 cursor-not-allowed"
             )}
-            aria-label="أضف للسلة"
+            aria-label="Add to Cart"
           >
             <Plus className="w-7 h-7" />
           </button>

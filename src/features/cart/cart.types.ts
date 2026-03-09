@@ -36,6 +36,6 @@ export interface CartStore {
   // === Computed Getters ===
   totalItems: number
   totalPrice: number
-  subtotal: number          // بدون الشحن
+  subtotal: number          // بدون Shipping
   isEmpty: boolean
 }

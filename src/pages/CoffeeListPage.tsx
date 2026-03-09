@@ -12,15 +12,15 @@ const allCoffees = [
   { id: 'sumatra-06', name: 'Sumatra Mandheling', roast: 'Dark', price: 75, rating: 4.5, image: 'https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?w=500' },
 ];
 
-const roastTypes = ["الكل", "Light", "Medium", "Dark"];
+const roastTypes = ["All", "Light", "Medium", "Dark"];
 
 export function CoffeeList() {
   const navigate = useNavigate();
   const { addItem } = useCart();
-  const [activeRoast, setActiveRoast] = useState("الكل");
+  const [activeRoast, setActiveRoast] = useState("All");
 
   return (
-    <div dir="rtl" className="min-h-screen bg-[#FAF7F2] relative overflow-hidden font-sans pb-20">
+    <div dir="ltr" className="min-h-screen bg-[#FAF7F2] relative overflow-hidden font-sans pb-20">
       <button 
         onClick={() => navigate(-1)}
         className="fixed left-6 top-24 z-50 p-4 rounded-full bg-white/40 backdrop-blur-xl border border-white/60 shadow-2xl text-[#4A3B32] hover:bg-[#4A3B32] hover:text-white transition-all duration-300 group"
@@ -30,8 +30,8 @@ export function CoffeeList() {
 
       <div className="container mx-auto px-4 py-16 relative z-10">
         <header className="text-center mb-12 space-y-4">
-          <h1 className="text-5xl font-black text-[#4A3B32]">قائمة <span className="text-[#8C6239]">المحاصيل</span></h1>
-          <p className="text-[#6B4423]/70 max-w-lg mx-auto">استكشف أفضل أنواع القهوة المختصة المختارة بعناية من حول العالم.</p>
+          <h1 className="text-5xl font-black text-[#4A3B32]">Beans <span className="text-[#8C6239]">Menu</span></h1>
+          <p className="text-[#6B4423]/70 max-w-lg mx-auto">Explore the finest specialty coffee carefully selected from around the world.</p>
         </header>
 
         {/* Search & Filter Bar */}
@@ -47,7 +47,7 @@ export function CoffeeList() {
                   : 'bg-white/50 text-[#4A3B32] hover:bg-white'
                 }`}
               >
-                {type === "الكل" ? "جميع الدرجات" : `تحميص ${type}`}
+                {type === "All" ? "All Roasts" : `${type} Roast`}
               </button>
             ))}
           </div>
@@ -56,7 +56,7 @@ export function CoffeeList() {
             <Search className="absolute right-4 top-1/2 -translate-y-1/2 text-[#8C6239]/50 group-focus-within:text-[#8C6239]" size={18} />
             <input 
               type="text" 
-              placeholder="ابحث عن محصولك المفضل..." 
+              placeholder="Search for your favorite beans..." 
               className="w-full pr-12 pl-4 py-3 rounded-2xl bg-white/50 border border-transparent focus:border-[#8C6239]/30 outline-none transition-all"
             />
           </div>
@@ -65,7 +65,7 @@ export function CoffeeList() {
         {/* Coffee Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
           {allCoffees
-            .filter(c => activeRoast === "الكل" || c.roast === activeRoast)
+            .filter(c => activeRoast === "All" || c.roast === activeRoast)
             .map((coffee) => (
             <div 
               key={coffee.id}
@@ -87,7 +87,7 @@ export function CoffeeList() {
                 <h3 className="text-xl font-bold text-[#4A3B32] mb-4">{coffee.name}</h3>
                 
                 <div className="flex items-center justify-between">
-                  <span className="text-2xl font-black text-[#4A3B32]">{coffee.price} <small className="text-xs font-medium">ر.س</small></span>
+                  <span className="text-2xl font-black text-[#4A3B32]">{coffee.price} <small className="text-xs font-medium">SAR</small></span>
                   <button 
                     onClick={(e) => {
                       e.stopPropagation();

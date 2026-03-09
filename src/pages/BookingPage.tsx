@@ -43,7 +43,7 @@ const bookingPlans: BookingPlan[] = [
     price: '150',
     duration: 'ساعة',
     icon: Star,
-    features: ['شاشة عرض ذكية', 'سبورة بيضاء', 'قهوة ضيافة مجانية', 'خصوصية تامة'],
+    features: ['شاشة عرض ذكية', 'سبورة بيضاء', 'قهوة ضيافة Freeة', 'خصوصية تامة'],
     color: 'from-[#4A3B32] to-[#2E1F18]',
   }
 ];
@@ -53,7 +53,7 @@ export function BookingPage() {
   const navigate = useNavigate();
 
   return (
-    <div dir="rtl" className="min-h-screen bg-[#F5F0EB] relative overflow-hidden font-sans pb-12">
+    <div dir="ltr" className="min-h-screen bg-[#F5F0EB] relative overflow-hidden font-sans pb-12">
       {/* عناصر الخلفية الزخرفية */}
       <div className="absolute top-[-10%] right-[-5%] w-[50vw] h-[50vw] rounded-full bg-[#E8DCC8] opacity-60 blur-[100px] pointer-events-none" />
       <div className="absolute bottom-[-20%] left-[-10%] w-[60vw] h-[60vw] rounded-full bg-[#D4B895] opacity-40 blur-[120px] pointer-events-none" />
@@ -107,7 +107,7 @@ export function BookingPage() {
 
                 <div className="mb-8">
                   <span className="text-5xl font-black text-[#4A3B32]">{plan.price}</span>
-                  <span className="text-lg text-[#6B4423]/60 font-bold ml-1"> ر.س / {plan.duration}</span>
+                  <span className="text-lg text-[#6B4423]/60 font-bold ml-1"> SAR / {plan.duration}</span>
                 </div>
 
                 <ul className="space-y-4 mb-8">

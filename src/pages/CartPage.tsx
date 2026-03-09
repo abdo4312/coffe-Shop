@@ -9,13 +9,13 @@ export function CartPage() {
   // حالة السلة فارغة
   if (items.length === 0) {
     return (
-      <div dir="rtl" className="container mx-auto px-4 py-20">
+      <div dir="ltr" className="container mx-auto px-4 py-20">
         <div className="flex min-h-[400px] flex-col items-center justify-center gap-6 rounded-[3rem] border border-white/40 bg-white/20 p-8 text-center backdrop-blur-xl shadow-2xl">
           <div className="rounded-full bg-[#5f3a26]/10 p-8">
             <ShoppingBag className="h-16 w-16 text-[#5f3a26] opacity-20" />
           </div>
           <div className="space-y-2">
-            <h2 className="text-3xl font-black text-[#4c2d1e]">سلة المشتريات فارغة</h2>
+            <h2 className="text-3xl font-black text-[#4c2d1e]">Shopping Cart فارغة</h2>
             <p className="text-[#6d4c38] opacity-80">يبدو أنك لم تضف أي نوع من قهوتنا المميزة بعد.</p>
           </div>
           <Link
@@ -31,7 +31,7 @@ export function CartPage() {
   }
 
   return (
-    <div dir="rtl" className="container mx-auto px-4 py-16 font-sans">
+    <div dir="ltr" className="container mx-auto px-4 py-16 font-sans">
       <h1 className="mb-10 text-4xl font-black text-[#4c2d1e]">سلة التسوق ({items.length})</h1>
 
       <div className="grid gap-10 lg:grid-cols-3">
@@ -58,7 +58,7 @@ export function CartPage() {
                     <h3 className="text-xl font-bold text-[#5f3a26]">{item.name}</h3>
                     {item.roastLevel && (
                       <span className="mt-1 inline-block rounded-full bg-[#8a5234]/10 px-3 py-1 text-xs font-bold text-[#8a5234]">
-                        تحميص {item.roastLevel}
+                        Roast {item.roastLevel}
                       </span>
                     )}
                   </div>
@@ -72,7 +72,7 @@ export function CartPage() {
                 </div>
 
                 <div className="flex items-center justify-between">
-                  {/* التحكم بالكمية */}
+                  {/* التحكم بQuantity */}
                   <div className="flex items-center gap-4 rounded-2xl bg-white/50 p-1 shadow-inner">
                     <button
                       onClick={() => updateQuantity(item.id, item.quantity - 1)}
@@ -91,9 +91,9 @@ export function CartPage() {
                     </button>
                   </div>
 
-                  {/* سعر المنتج الإجمالي (سعر الوحدة * الكمية) */}
+                  {/* سعر المنتج Total (سعر الوحدة * Quantity) */}
                   <div className="text-left">
-                    <p className="text-xs text-[#6d4c38] opacity-60 italic">السعر الإجمالي</p>
+                    <p className="text-xs text-[#6d4c38] opacity-60 italic">السعر Total</p>
                     <span className="text-2xl font-black text-[#4c2d1e]">
                       ${(item.price * item.quantity).toFixed(2)}
                     </span>
@@ -111,17 +111,17 @@ export function CartPage() {
             
             <div className="space-y-4 border-b border-[#5f3a26]/10 pb-6">
               <div className="flex justify-between text-lg text-[#6d4c38]">
-                <span>المجموع الفرعي</span>
+                <span>Subtotal</span>
                 <span className="font-bold">${totalPrice.toFixed(2)}</span>
               </div>
               <div className="flex justify-between text-lg text-[#6d4c38]">
                 <span>رسوم التوصيل</span>
-                <span className="font-bold text-green-600">مجاني</span>
+                <span className="font-bold text-green-600">Free</span>
               </div>
             </div>
 
             <div className="flex justify-between text-3xl font-black text-[#4c2d1e]">
-              <span>الإجمالي</span>
+              <span>Total</span>
               <span>${totalPrice.toFixed(2)}</span>
             </div>
 
@@ -129,7 +129,7 @@ export function CartPage() {
               onClick={() => navigate('/checkout')}
               className="group relative w-full overflow-hidden rounded-2xl bg-[#5f3926] py-5 text-lg font-bold uppercase tracking-widest text-[#fff2e3] transition-all hover:bg-[#4c2f21] hover:shadow-2xl active:scale-95"
             >
-              <span className="relative z-10">إتمام الشراء</span>
+              <span className="relative z-10">Checkout</span>
               <div className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/10 to-transparent transition-transform duration-500 group-hover:translate-x-full" />
             </button>
 

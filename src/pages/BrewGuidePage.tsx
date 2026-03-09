@@ -53,7 +53,7 @@ export function BrewGuidePage() {
   const navigate = useNavigate();
 
   return (
-    <div dir="rtl" className="relative min-h-screen overflow-hidden bg-[#FAF7F2] font-sans">
+    <div dir="ltr" className="relative min-h-screen overflow-hidden bg-[#FAF7F2] font-sans">
       {/* Liquid Coffee Background Effects */}
       <div className="absolute inset-0 z-0">
         <div className="absolute -right-20 top-0 h-[600px] w-[600px] animate-pulse rounded-full bg-[#8C6239]/10 blur-[120px]" />

@@ -5,7 +5,7 @@ const categories = [
   'الكل',
   'سينجل أوريجن',
   'إسبريسو بليند',
-  'تحميص داكن',
+  'Roast داكن',
   'عروض الموسم',
 ] as const
 
@@ -45,15 +45,15 @@ const beanAds: BeanAd[] = [
     category: 'إسبريسو بليند',
     image:
       'https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=1200&q=80',
-    cta: 'أضف للسلة',
+    cta: 'Add to Cart',
     isBestSeller: true,
   },
   {
     id: 'beans-night-roast',
     title: 'Night Roast - Dark Blend',
-    description: 'تحميص داكن بنكهة كاكاو مركزة ولمسة دخانية خفيفة.',
+    description: 'Roast داكن بنكهة كاكاو مركزة ولمسة دخانية خفيفة.',
     price: '255 جنيه',
-    category: 'تحميص داكن',
+    category: 'Roast داكن',
     image:
       'https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=1200&q=80',
     cta: 'جرّبه الآن',

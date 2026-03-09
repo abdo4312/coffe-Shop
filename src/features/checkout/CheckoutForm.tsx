@@ -72,7 +72,7 @@ export function CheckoutForm() {
         <div className="grid grid-cols-3 gap-3">
           {[
             { value: 'card',   label: 'بطاقة ائتمان' },
-            { value: 'cod',    label: 'الدفع عند الاستلام' },
+            { value: 'cod',    label: 'Cash on Delivery' },
             { value: 'wallet', label: 'محفظة إلكترونية' },
           ].map((method) => (
             <label

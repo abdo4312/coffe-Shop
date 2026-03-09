@@ -2,7 +2,7 @@ import { Coffee, Target, Award, Users, Heart } from 'lucide-react';
 
 export function AboutPage() {
   return (
-    <div dir="rtl" className="relative min-h-screen overflow-hidden bg-[#FAF7F2] font-sans">
+    <div dir="ltr" className="relative min-h-screen overflow-hidden bg-[#FAF7F2] font-sans">
       {/* 1. السائل المتدفق في الخلفية - Liquid Background Effects */}
       <div className="absolute inset-0 z-0">
         <div className="absolute -left-[10%] top-[5%] h-[500px] w-[500px] animate-pulse rounded-full bg-[#8C6239]/10 blur-[120px]" />
@@ -15,7 +15,7 @@ export function AboutPage() {
         {/* Header Section */}
         <header className="mb-20 text-center">
           <div className="inline-block rounded-full bg-white/40 px-6 py-2 backdrop-blur-md border border-white/60 mb-6">
-            <span className="text-sm font-bold tracking-widest text-[#8C6239] uppercase">قصتنا منذ البداية</span>
+            <span className="text-sm font-bold tracking-widest text-[#8C6239] uppercase">Our Story منذ البداية</span>
           </div>
           <h1 className="text-6xl font-black text-[#4A3B32] md:text-7xl">
             نحن أكثر من مجرد <br />
@@ -65,7 +65,7 @@ export function AboutPage() {
           <ValueCard 
             icon={<Target size={32} />} 
             title="رؤيتنا" 
-            description="أن نصبح المرجع الأول لعشاق القهوة المختصة في المنطقة، مع الحفاظ على استدامة المزارع وجودة التحميص."
+            description="أن نصبح المرجع الأول لعشاق القهوة المختصة في المنطقة، مع الحفاظ على استدامة المزارع وجودة الRoast."
           />
           <ValueCard 
             icon={<Users size={32} />} 
@@ -84,7 +84,7 @@ export function AboutPage() {
           <div className="absolute top-0 right-0 w-64 h-64 bg-[#8C6239]/20 rounded-full blur-[80px] -translate-y-1/2 translate-x-1/2" />
           <h2 className="text-4xl font-black mb-6">هل أنت جاهز لتجربة المذاق الأصيل؟</h2>
           <button className="rounded-2xl bg-white px-10 py-4 text-lg font-bold text-[#4A3B32] transition-all hover:bg-[#FAF7F2] hover:scale-105 active:scale-95">
-            تصفح المحاصيل الآن
+            Browse Beans Now
           </button>
         </div>
       </div>

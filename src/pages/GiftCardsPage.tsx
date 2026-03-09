@@ -22,7 +22,7 @@ const giftCards: GiftCard[] = [
     amount: 250,
     title: 'بطاقة المزاج',
     color: 'from-[#8C6239] to-[#6B4423]',
-    perks: ['صالحة لمدة سنة', 'تغليف هدايا مجاني', 'شحن مجاني لمرة واحدة']
+    perks: ['صالحة لمدة سنة', 'تغليف هدايا Free', 'شحن Free لمرة واحدة']
   },
   {
     id: 'gold',
@@ -37,7 +37,7 @@ export function GiftCards() {
   const [selectedAmount, setSelectedAmount] = useState<number>(250);
 
   return (
-    <div dir="rtl" className="min-h-screen bg-[#FAF7F2] relative overflow-hidden font-sans pb-20">
+    <div dir="ltr" className="min-h-screen bg-[#FAF7F2] relative overflow-hidden font-sans pb-20">
       {/* Background Fluid Shapes */}
       <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
         <div className="absolute -top-24 -right-24 w-96 h-96 bg-[#8C6239]/10 rounded-full blur-[100px]" />
@@ -77,7 +77,7 @@ export function GiftCards() {
                   
                   <div>
                     <div className="text-sm opacity-80 mb-1">قيمة البطاقة</div>
-                    <div className="text-5xl font-black">{selectedAmount} <span className="text-xl">ر.س</span></div>
+                    <div className="text-5xl font-black">{selectedAmount} <span className="text-xl">SAR</span></div>
                   </div>
 
                   <div className="flex justify-between items-end">

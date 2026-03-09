@@ -5,7 +5,7 @@ export function ShippingPage() {
   const navigate = useNavigate();
 
   return (
-    <div dir="rtl" className="relative min-h-screen overflow-hidden bg-[#FAF7F2] font-sans">
+    <div dir="ltr" className="relative min-h-screen overflow-hidden bg-[#FAF7F2] font-sans">
       {/* التأثيرات الخلفية السائلة - Liquid Background */}
       <div className="absolute inset-0 z-0">
         <div className="absolute -right-[5%] top-[10%] h-[400px] w-[400px] animate-pulse rounded-full bg-[#8C6239]/15 blur-[100px]" />
@@ -21,7 +21,7 @@ export function ShippingPage() {
             <span className="text-sm font-bold tracking-widest text-[#8C6239] uppercase">الخدمات اللوجستية</span>
           </div>
           <h1 className="text-5xl font-black text-[#4A3B32] md:text-6xl">
-            الشحن والتوصيل <br />
+            Shipping والتوصيل <br />
             <span className="text-[#8C6239]">إلى باب منزلك</span>
           </h1>
         </header>
@@ -31,7 +31,7 @@ export function ShippingPage() {
           <ShippingCard 
             icon={<Clock size={32} />}
             title="وقت التجهيز"
-            description="يتم تحميص وتغليف طلبك خلال 24-48 ساعة لضمان وصول القهوة إليك وهي في قمة طزاجتها."
+            description="يتم Roast وتغليف طلبك خلال 24-48 ساعة لضمان وصول القهوة إليك وهي في قمة طزاجتها."
           />
           <ShippingCard 
             icon={<Globe size={32} />}
@@ -47,7 +47,7 @@ export function ShippingPage() {
 
         {/* تفاصيل إضافية - Glass Panel */}
         <div className="mt-16 overflow-hidden rounded-[3rem] border border-white/60 bg-white/30 p-10 backdrop-blur-2xl shadow-2xl transition-all hover:bg-white/40">
-          <h2 className="mb-8 text-3xl font-black text-[#4A3B32]">أسئلة متكررة عن الشحن</h2>
+          <h2 className="mb-8 text-3xl font-black text-[#4A3B32]">أسئلة متكررة عن Shipping</h2>
           
           <div className="space-y-8">
             <div className="flex gap-6">
@@ -56,7 +56,7 @@ export function ShippingPage() {
               </div>
               <div>
                 <h4 className="text-xl font-bold text-[#4A3B32]">كيف يمكنني تتبع طلبي؟</h4>
-                <p className="mt-2 leading-relaxed text-[#6B4423]/70">بمجرد خروج الطلب من المحمصة، ستصلك رسالة نصية (SMS) وبريد إلكتروني يحتوي على رابط تتبع مباشر مع شركة الشحن.</p>
+                <p className="mt-2 leading-relaxed text-[#6B4423]/70">بمجرد خروج الطلب من المحمصة، ستصلك رسالة نصية (SMS) وبريد إلكتروني يحتوي على رابط تتبع مباشر مع شركة Shipping.</p>
               </div>
             </div>
 
@@ -66,19 +66,19 @@ export function ShippingPage() {
               </div>
               <div>
                 <h4 className="text-xl font-bold text-[#4A3B32]">ماذا لو وصل الطلب تالفاً؟</h4>
-                <p className="mt-2 leading-relaxed text-[#6B4423]/70">رضاك هو أولويتنا. إذا واجهت أي مشكلة في الشحنة، تواصل معنا خلال 24 ساعة وسنقوم بإرسال طلب بديل فوراً دون أي تكاليف إضافية.</p>
+                <p className="mt-2 leading-relaxed text-[#6B4423]/70">Your satisfaction is our priority. إذا واجهت أي مشكلة في Shippingة، Contact Us خلال 24 ساعة وسنقوم بإرسال طلب بديل فوراً دون أي تكاليف إضافية.</p>
               </div>
             </div>
           </div>
         </div>
 
-        {/* زر العودة للتسوق */}
+        {/* زر Back to Shopping */}
         <div className="mt-12 text-center">
           <button 
             onClick={() => navigate('/coffee-list')}
             className="rounded-2xl bg-[#4A3B32] px-12 py-4 text-lg font-bold text-white shadow-xl transition-all hover:bg-[#2E1F18] hover:scale-105 active:scale-95"
           >
-            العودة للتسوق
+            Back to Shopping
           </button>
         </div>
       </div>

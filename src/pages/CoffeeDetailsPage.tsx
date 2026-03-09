@@ -10,7 +10,7 @@ export function CoffeeDetails() {
   // بيانات تجريبية لنوع القهوة (يمكنك لاحقاً جلبها عبر الـ ID)
   const coffeeData = {
     name: "إسبريسو إثيوبي مختص",
-    category: "تحميص متوسط",
+    category: "Roast متوسط",
     price: 85,
     rating: 4.9,
     reviews: 124,
@@ -21,7 +21,7 @@ export function CoffeeDetails() {
   };
 
   return (
-    <div dir="rtl" className="min-h-screen bg-[#FAF7F2] relative overflow-hidden font-sans pb-12">
+    <div dir="ltr" className="min-h-screen bg-[#FAF7F2] relative overflow-hidden font-sans pb-12">
       {/* الزر الجانبي للرجوع - جهة الشمال */}
       <button 
         onClick={() => navigate(-1)}
@@ -102,7 +102,7 @@ export function CoffeeDetails() {
             <div className="flex items-center justify-between gap-6">
               <div>
                 <span className="text-sm text-[#6B4423]/60 block mb-1">السعر التقريبي</span>
-                <span className="text-4xl font-black text-[#4A3B32]">{coffeeData.price} <small className="text-lg">ر.س</small></span>
+                <span className="text-4xl font-black text-[#4A3B32]">{coffeeData.price} <small className="text-lg">SAR</small></span>
               </div>
 
               <div className="flex items-center bg-white/60 backdrop-blur-md rounded-2xl border border-white p-1">
@@ -113,7 +113,7 @@ export function CoffeeDetails() {
 
               <button className="flex-1 py-4 bg-[#4A3B32] text-white rounded-2xl font-bold flex items-center justify-center gap-3 hover:bg-[#8C6239] transition-all shadow-xl shadow-[#4A3B32]/20 group">
                 <ShoppingCart size={20} className="group-hover:animate-bounce" />
-                أضف للسلة
+                Add to Cart
               </button>
             </div>
 
@@ -125,7 +125,7 @@ export function CoffeeDetails() {
                </div>
                <div className="flex flex-col items-center gap-1 text-[#6B4423]/60">
                   <Clock size={20} className="text-[#8C6239]" />
-                  <span className="text-xs font-bold">تحميص طازج</span>
+                  <span className="text-xs font-bold">Roast طازج</span>
                </div>
                <div className="flex flex-col items-center gap-1 text-[#6B4423]/60">
                   <Coffee size={20} className="text-[#8C6239]" />
