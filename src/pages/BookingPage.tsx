@@ -1,4 +1,4 @@
-import { Check, Star, Users, Coffee, ArrowLeft, Calendar, Clock } from 'lucide-react';
+import { Check, Star, Users, Coffee, ArrowLeft } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 
 // واجهة بيانات أنواع الحجز (الطاولات)
@@ -57,9 +57,9 @@ export function BookingPage() {
       {/* Decorative background elements */}
       <div className="absolute top-[-10%] right-[-5%] w-[50vw] h-[50vw] rounded-full bg-[#E8DCC8] opacity-60 blur-[100px] pointer-events-none" />
       <div className="absolute bottom-[-20%] left-[-10%] w-[60vw] h-[60vw] rounded-full bg-[#D4B895] opacity-40 blur-[120px] pointer-events-none" />
-      
+
       {/* Back button */}
-      <button 
+      <button
         onClick={() => navigate(-1)}
         className="fixed left-6 top-24 z-50 p-4 rounded-full bg-white/40 backdrop-blur-xl border border-white/60 shadow-2xl text-[#4A3B32] hover:bg-[#4A3B32] hover:text-white transition-all duration-300 group"
       >
@@ -82,11 +82,11 @@ export function BookingPage() {
           {bookingPlans.map((plan) => {
             const Icon = plan.icon;
             return (
-              <div 
+              <div
                 key={plan.id}
                 className={`relative group rounded-[2.5rem] p-8 transition-all duration-500 hover:-translate-y-2
-                  ${plan.isPopular 
-                    ? 'bg-white/45 border-2 border-[#8C6239]/40 shadow-2xl md:scale-105 z-10' 
+                  ${plan.isPopular
+                    ? 'bg-white/45 border-2 border-[#8C6239]/40 shadow-2xl md:scale-105 z-10'
                     : 'bg-white/25 border border-white/50 shadow-xl'
                   } backdrop-blur-xl`}
               >
@@ -121,9 +121,14 @@ export function BookingPage() {
                   ))}
                 </ul>
 
-                <button className={`w-full py-4 rounded-2xl font-black text-lg transition-all ${
-                  plan.isPopular ? 'bg-[#8C6239] text-white' : 'bg-[#4A3B32] text-white'
-                }`}>
+                <button
+                  onClick={() => {
+                    localStorage.setItem('selectedBookingPlanId', plan.id);
+                    navigate('/booking-form');
+                  }}
+                  className={`w-full py-4 rounded-2xl font-black text-lg transition-all ${plan.isPopular ? 'bg-[#8C6239] text-white' : 'bg-[#4A3B32] text-white'
+                    }`}
+                >
                   Confirm Booking
                 </button>
               </div>

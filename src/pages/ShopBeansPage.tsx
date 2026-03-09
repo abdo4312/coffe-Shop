@@ -1,15 +1,36 @@
 import { useState, useMemo } from 'react'
-import { Search, SlidersHorizontal, ChevronDown, X, Check, Sparkles } from 'lucide-react'
-import { ProductCard } from '@/features/products/ProductCard'
+import { useSearchParams } from 'react-router-dom'
 import { mockProducts } from '@/features/products/mockProducts'
-import type { Product } from '@/features/products/product.types'
+import { ProductCard } from '@/features/products/ProductCard'
+import { Search, ChevronDown, Check, Coffee, X } from 'lucide-react'
 
 // أنواع الفلاتر
 type RoastFilter = 'all' | 'light roast' | 'medium roast' | 'dark roast' | 'cold brew'
 type SortOption = 'newest' | 'price-asc' | 'price-desc' | 'name' | 'rating'
 type PriceRange = 'all' | 'under-50' | '50-70' | 'above-70'
 
+// معلومات الفئات
+const categoryInfo: Record<string, { title: string; description: string }> = {
+    'Single-Origin Beans': {
+        title: 'Single-Origin Beans',
+        description: 'Complex notes from seasonal farm lots. Explore unique flavors from around the world.'
+    },
+    'Espresso Blends': {
+        title: 'Espresso Blends',
+        description: 'Balanced body with caramel sweetness. Perfect for your espresso machine.'
+    },
+    'Cold Brew Kits': {
+        title: 'Cold Brew Kits',
+        description: 'Smooth extraction for iced coffee lovers. Pre-ground for optimal cold extraction.'
+    },
+}
+
 export function ShopBeansPage() {
+    const [searchParams, setSearchParams] = useSearchParams()
+
+    // قراءة الـ category من URL
+    const categoryFromUrl = searchParams.get('category')
+
     // State للفلاتر والبحث
     const [searchQuery, setSearchQuery] = useState('')
     const [roastFilter, setRoastFilter] = useState<RoastFilter>('all')
@@ -18,22 +39,32 @@ export function ShopBeansPage() {
     const [sortBy, setSortBy] = useState<SortOption>('newest')
     const [showFilters, setShowFilters] = useState(false)
 
-    // استخراج قائمة الـ Origins الفريدة من الـ tags
+    // فلترة المنتجات اللي هي Coffee فقط (مش Tools)
+    const coffeeProducts = useMemo(() =>
+        mockProducts.filter(p => p.category !== 'Coffee Tools'),
+        []
+    )
+
+    // استخراج قائمة الـ Origins الفريدة
     const uniqueOrigins = useMemo(() => {
         const origins = new Set<string>()
-        mockProducts.forEach(p => {
-            // الـ Origin هو الـ tag التاني (بعد الـ roast)
+        coffeeProducts.forEach(p => {
             const originTag = p.tags.find(t =>
                 ['Colombia', 'Ethiopia', 'Kenya', 'Brazil', 'Indonesia', 'Guatemala', 'Peru', 'Honduras'].includes(t)
             )
             if (originTag) origins.add(originTag)
         })
         return Array.from(origins).sort()
-    }, [])
+    }, [coffeeProducts])
 
     // تطبيق الفلاتر والترتيب
     const filteredProducts = useMemo(() => {
-        let result = [...mockProducts]
+        let result = [...coffeeProducts]
+
+        // فلتر الـ category من URL
+        if (categoryFromUrl && categoryInfo[categoryFromUrl]) {
+            result = result.filter(p => p.category === categoryFromUrl)
+        }
 
         // فلتر البحث
         if (searchQuery) {
@@ -86,11 +117,16 @@ export function ShopBeansPage() {
                 break
             case 'newest':
             default:
+                result.sort((a, b) => {
+                    const aIsNew = a.isNew ? 1 : 0
+                    const bIsNew = b.isNew ? 1 : 0
+                    return bIsNew - aIsNew
+                })
                 result.sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime())
         }
 
         return result
-    }, [searchQuery, roastFilter, originFilter, priceRange, sortBy])
+    }, [coffeeProducts, categoryFromUrl, searchQuery, roastFilter, originFilter, priceRange, sortBy])
 
     // إعادة تعيين الفلاتر
     const resetFilters = () => {
@@ -99,6 +135,10 @@ export function ShopBeansPage() {
         setOriginFilter('all')
         setPriceRange('all')
         setSortBy('newest')
+        if (categoryFromUrl) {
+            searchParams.delete('category')
+            setSearchParams(searchParams)
+        }
     }
 
     // عدد الفلاتر النشطة
@@ -106,20 +146,14 @@ export function ShopBeansPage() {
         roastFilter !== 'all',
         originFilter !== 'all',
         priceRange !== 'all',
-        searchQuery !== ''
+        searchQuery !== '',
+        !!categoryFromUrl
     ].filter(Boolean).length
 
-    // دالة لاستخراج الـ Roast من الـ tags
-    const getRoastTag = (product: Product) => {
-        return product.tags.find(t => t.includes('roast') || t === 'cold brew') || 'medium roast'
-    }
-
-    // دالة لاستخراج الـ Origin من الـ tags
-    const getOriginTag = (product: Product) => {
-        return product.tags.find(t =>
-            ['Colombia', 'Ethiopia', 'Kenya', 'Brazil', 'Indonesia', 'Guatemala', 'Peru', 'Honduras', 'Blend'].includes(t)
-        ) || 'Unknown'
-    }
+    // معلومات الصفحة الحالية
+    const currentCategory = categoryFromUrl && categoryInfo[categoryFromUrl]
+        ? categoryInfo[categoryFromUrl]
+        : null
 
     return (
         <main className="relative isolate min-h-screen overflow-hidden bg-[radial-gradient(circle_at_20%_15%,#fff8f1_0%,#f9e8d8_35%,#efdac7_65%,#e3ccb8_100%)] text-[#2e1a12]">
@@ -133,14 +167,17 @@ export function ShopBeansPage() {
 
                 {/* Header Section */}
                 <header className="mb-10 text-center">
-                    <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#8c6239]">
-                        Premium Selection
-                    </p>
+                    <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-[#8c6239]/30 bg-[#8c6239]/10 px-4 py-2">
+                        <Coffee className="h-4 w-4 text-[#8c6239]" />
+                        <span className="text-sm font-medium text-[#5f3a26]">
+                            {currentCategory ? currentCategory.title : 'Premium Selection'}
+                        </span>
+                    </div>
                     <h1 className="mt-3 text-4xl font-bold text-[#3f2518] md:text-5xl">
-                        Shop Signature Beans
+                        {currentCategory ? currentCategory.title : 'Shop Signature Beans'}
                     </h1>
                     <p className="mx-auto mt-4 max-w-xl text-base text-[#6B4423]/80">
-                        Explore our curated collection of single-origin and blend coffees from the world's finest farms.
+                        {currentCategory ? currentCategory.description : 'Explore our curated collection of single-origin and blend coffees from the world\'s finest farms.'}
                     </p>
                 </header>
 
@@ -166,7 +203,7 @@ export function ShopBeansPage() {
                             onClick={() => setShowFilters(!showFilters)}
                             className="flex items-center gap-2 rounded-xl border border-white/50 bg-white/35 px-4 py-2.5 text-sm font-medium text-[#412619] backdrop-blur-xl transition hover:bg-white/50 md:hidden"
                         >
-                            <SlidersHorizontal className="h-4 w-4" />
+                            <Search className="h-4 w-4" />
                             Filters
                             {activeFiltersCount > 0 && (
                                 <span className="rounded-full bg-[#5f3a26] px-2 py-0.5 text-xs text-white">
@@ -206,7 +243,7 @@ export function ShopBeansPage() {
                 {/* المحتوى الرئيسي - Sidebar + Grid */}
                 <div className="flex gap-8">
 
-                    {/* Sidebar - الفلاتر (ديسكتوب) */}
+                    {/* Sidebar - الفلاتر */}
                     <aside className={`${showFilters ? 'block' : 'hidden'} absolute left-0 right-0 top-0 z-50 rounded-3xl bg-[#FAF7F2]/98 p-6 backdrop-blur-2xl md:static md:block md:w-72 md:bg-transparent md:p-0 md:backdrop-blur-none`}>
 
                         {/* زرار إغلاق للموبايل */}
@@ -328,39 +365,20 @@ export function ShopBeansPage() {
                         {/* عدد النتائج */}
                         <p className="mb-6 text-sm text-[#6B4423]/70">
                             Showing <span className="font-semibold text-[#3f2518]">{filteredProducts.length}</span> of{' '}
-                            <span className="font-semibold text-[#3f2518]">{mockProducts.length}</span> products
+                            <span className="font-semibold text-[#3f2518]">{coffeeProducts.length}</span> products
                         </p>
 
                         {/* Grid */}
                         {filteredProducts.length > 0 ? (
                             <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
                                 {filteredProducts.map((product) => (
-                                    <div key={product.id} className="relative">
-                                        {/* شارة Roast + Origin */}
-                                        <div className="absolute -top-3 left-4 z-10 flex gap-2">
-                                            <span className="rounded-full border border-white/40 bg-[#2f1f16]/70 px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-[0.12em] text-[#f8e7d4] backdrop-blur-md">
-                                                {getRoastTag(product)}
-                                            </span>
-                                            <span className="rounded-full bg-[#8c6239]/80 px-2.5 py-0.5 text-[10px] font-medium text-white backdrop-blur-md">
-                                                {getOriginTag(product)}
-                                            </span>
-                                            {product.tags.includes('new') && (
-                                                <span className="flex items-center gap-1 rounded-full bg-[#d4a574] px-2 py-0.5 text-[9px] font-bold uppercase tracking-[0.08em] text-white">
-                                                    <Sparkles className="h-2.5 w-2.5" />
-                                                    New
-                                                </span>
-                                            )}
-                                        </div>
-
-                                        <ProductCard product={product} />
-                                    </div>
+                                    <ProductCard key={product.id} product={product} />
                                 ))}
                             </div>
                         ) : (
-                            /* حالة عدم وجود نتائج */
                             <div className="flex flex-col items-center justify-center py-20 text-center">
                                 <div className="mb-6 rounded-full bg-[#8c6239]/10 p-6">
-                                    <Search className="h-10 w-10 text-[#8c6239]/50" />
+                                    <Coffee className="h-10 w-10 text-[#8c6239]/50" />
                                 </div>
                                 <h3 className="mb-2 text-xl font-semibold text-[#3f2518]">No beans found</h3>
                                 <p className="mb-6 text-sm text-[#6B4423]/70">

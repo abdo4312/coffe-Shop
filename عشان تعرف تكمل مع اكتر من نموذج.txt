@@ -1,0 +1,56 @@
+📋 Project Context - Aroma CornerAroma Corner - Premium Coffee E-commerce
+
+Tech Stack:React 18 (Functional Components & Hooks)Vite as the build toolTypeScript (Strict typing)Tailwind CSS v4 (Arbitrary values & complex classes)React Router DOM v6 (SPA navigation)Lucide-React (Icons)Absolute imports with @/ path aliases
+Design System & UI/UX Style (CRITICAL):Theme: Coffee-inspired warm paletteCreams: #FAF7F2, #fff8f1Browns: #4A3B32, #8C6239, #4c2d1e, #5f3a26Glassmorphism: Cards, headers, panels use glass effectsExample: bg-white/30 backdrop-blur-xl border border-white/40 shadow-2xlLiquid/Organic Blobs: Animated backgrounds with radial-gradient, custom CSS animationsTypography: Bold, modern sans-serif. Primary text-[#4A3B32], Secondary text-[#6B4423]/70Direction: dir="rtl" by default, but components flexible
+Project Structure:src/├── App.tsx # Main app with Router & CartProvider├── main.tsx├── index.css # Global styles + Blob animations│├── context/│ └── CartContext.tsx # Cart state management (Context API)│├── features/│ ├── home/│ │ ├── HeroBanner.tsx # Hero with CTAs│ │ ├── FeaturedCategories.tsx│ │ ├── FeaturedProducts.tsx│ │ ├── PromoSection.tsx # Updated: Links to /golden-hour│ │ ├── HomeHeader.tsx # Sticky header with cart icon│ │ ├── HomeFooter.tsx│ │ └── CheckoutPage.tsx│ ││ ├── products/│ │ ├── product.types.ts # Product interface│ │ ├── mockProducts.ts # Mock data (13 products) - Added Golden Hour Roast│ │ ├── ProductCard.tsx # Product card with glassmorphism│ │ ├── QuickViewModal.tsx # Quick view popup│ │ └── useQuickViewStore.ts # Zustand store for modal│ ││ ├── cart/│ │ ├── cart.types.ts # Cart types (unused - using Context)│ │ └── useCartStore.ts # Zustand (unused - kept for reference)│ ││ └── checkout/│ ├── CheckoutForm.tsx│ └── checkout.schema.ts│├── pages/│ ├── HomePage.tsx│ ├── ShopBeansPage.tsx # Shop with filters & sorting│ ├── BuildYourBoxPage.tsx # Custom box builder│ ├── CartPage.tsx│ ├── CoffeeDetailsPage.tsx│ ├── CoffeeListPage.tsx│ ├── AboutPage.tsx│ ├── ShippingPage.tsx│ ├── BrewGuidePage.tsx│ ├── BookingPage.tsx # Updated: Saves plan ID to localStorage│ ├── BookingFormPage.tsx # NEW: Booking form page│ ├── GoldenHourPage.tsx # NEW: Promotional landing page│ ├── BrewGearPage.tsx│ └── GiftCardsPage.tsx│├── shared/│ ├── components/│ │ ├── FormField.tsx│ │ └── Skeleton.tsx│ └── utils/│ ├── cn.ts # Classnames utility│ └── formatCurrency.ts│├── services/│ ├── apiClient.ts│ └── products.service.ts│└── lib/└── api.ts
+4. State Management:
+Cart: CartContext (Context API) - ONLY this is used
+useCart() hook provides: items, addItem, removeItem, updateQuantity, clearCart, totalItems, totalPrice
+Persisted to localStorage as aromaCart
+QuickView Modal: useQuickViewStore (Zustand)
+isOpen, product, open(), close()
+Booking Flow: Uses localStorage to pass selectedBookingPlanId between BookingPage and BookingFormPage.
+5. Routes (App.tsx):
+/ → HomePage
+/shop-beans → ShopBeansPage (Filter, Sort, Search)
+/build-your-box → BuildYourBoxPage (Box builder with discounts)
+/coffee-list → CoffeeListPage
+/coffee/:id → CoffeeDetailsPage
+/cart → CartPage
+/checkout → CheckoutPage
+/about → AboutPage
+/shipping → ShippingPage
+/brew-guide → BrewGuidePage
+/book-table → BookingPage
+/booking-form → BookingFormPage (NEW)
+/golden-hour → GoldenHourPage (NEW)
+/brew-gear → BrewGearPage
+/gift-cards → GiftCardsPage
+/beans → AdsPage
+6. Key Components Built:
+Component	Description
+ProductCard	Glass card with Quick View, Add to Cart, Wishlist
+QuickViewModal	Modal with quantity selector, Add to Cart
+ShopBeansPage	Full shop with filters (Roast, Price, Origin), Sort, Search
+BuildYourBoxPage	3 box sizes, product selection, discount calculation
+CartPage	Glassmorphism cart with quantity controls
+BookingPage	Displays 3 booking plans. Button saves ID to localStorage & navigates to form.
+BookingFormPage	Retrieves plan via ID. Displays summary & booking form (Name, Date, Time, etc.).
+GoldenHourPage	Landing page for "Golden Hour Roast" promo. Displays product details & Add to Cart.
+PromoSection	Hero-style banner. Button navigates to /golden-hour.
+7. Mock Data:
+13 coffee products in mockProducts.ts (Updated count)
+Each has: id, name, description, price, originalPrice?, images[], category, tags[], rating, reviewCount, inStock, variants[], createdAt
+New Product: Golden Hour Roast (id: golden-hour-01) in Limited Batch category.
+Tags include: roast level, origin, flavor notes, "new" badge
+8. CSS Animations (index.css):
+coffee-blob-a, coffee-blob-b, coffee-blob-c, coffee-blob-d
+coffee-hero-gradient
+liquid-blob
+All respect prefers-reduced-motion
+9. Important Notes:
+DO NOT create new state management systems without confirmation
+ALWAYS use useCart() from CartContext for cart operations
+ALWAYS follow the glassmorphism design pattern
+ALWAYS use coffee-inspired colors from the palette
+Named exports only: `export function ComponentName()

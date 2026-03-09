@@ -13,7 +13,7 @@ export interface CartItem {
 
 interface CartContextType {
   items: CartItem[];
-  addItem: (item: Omit<CartItem, 'quantity'>) => void;
+  addItem: (item: Omit<CartItem, 'quantity'> & { quantity?: number }) => void;
   removeItem: (id: string) => void;
   updateQuantity: (id: string, quantity: number) => void;
   clearCart: () => void;
@@ -37,17 +37,21 @@ export function CartProvider({ children }: { children: ReactNode }) {
     localStorage.setItem('aromaCart', JSON.stringify(items));
   }, [items]);
 
-  const addItem = (newItem: Omit<CartItem, 'quantity'>) => {
+  const addItem = (newItem: Omit<CartItem, 'quantity'> & { quantity?: number }) => {
     setItems((prev) => {
       const existingItem = prev.find((item) => item.id === newItem.id);
+      const quantityToAdd = newItem.quantity || 1;
+
       if (existingItem) {
         return prev.map((item) =>
           item.id === newItem.id
-            ? { ...item, quantity: item.quantity + 1 }
+            ? { ...item, quantity: item.quantity + quantityToAdd }
             : item
         );
       }
-      return [...prev, { ...newItem, quantity: 1 }];
+
+      const { quantity, ...itemWithoutQuantity } = newItem;
+      return [...prev, { ...itemWithoutQuantity, quantity: quantityToAdd } as CartItem];
     });
   };
 

@@ -66,7 +66,7 @@ export function ProductCard({ product, className }: ProductCardProps) {
     >
       {/* Image Container */}
       <div className="relative aspect-square overflow-hidden bg-neutral-100">
-        <Link to={`/products/${product.id}`} className="block h-full">
+        <Link to={`/coffee/${product.id}`} className="block h-full">
           <img
             src={product.images[0]}
             alt={product.name}

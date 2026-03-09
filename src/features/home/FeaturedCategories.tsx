@@ -1,20 +1,28 @@
+import { useNavigate } from 'react-router-dom'
+
 export function FeaturedCategories() {
+  const navigate = useNavigate()
+
   const categories = [
     {
       name: 'Single-Origin Beans',
       description: 'Complex notes from seasonal farm lots.',
+      path: '/shop-beans?category=Single-Origin Beans'
     },
     {
       name: 'Espresso Blends',
       description: 'Balanced body with caramel sweetness.',
+      path: '/shop-beans?category=Espresso Blends'
     },
     {
       name: 'Cold Brew Kits',
       description: 'Smooth extraction for iced coffee lovers.',
+      path: '/shop-beans?category=Cold Brew Kits'
     },
     {
       name: 'Coffee Tools',
       description: 'Grinders, drippers, and barista essentials.',
+      path: '/coffee-tools'
     },
   ]
 
@@ -34,7 +42,8 @@ export function FeaturedCategories() {
         {categories.map((category) => (
           <article
             key={category.name}
-            className="group rounded-2xl border border-white/45 bg-white/32 p-5 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_16px_30px_-18px_rgba(89,58,40,0.85)]"
+            onClick={() => navigate(category.path)}
+            className="group cursor-pointer rounded-2xl border border-white/45 bg-white/32 p-5 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_16px_30px_-18px_rgba(89,58,40,0.85)]"
           >
             <h3 className="text-lg font-semibold text-[#4a2e1f]">{category.name}</h3>
             <p className="mt-2 text-sm text-[#6e4f3a]">{category.description}</p>

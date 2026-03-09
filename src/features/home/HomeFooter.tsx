@@ -1,19 +1,18 @@
 import { Coffee, Instagram, Mail, MapPin } from 'lucide-react'
-import { Link } from 'react-router-dom' // استيراد Link للربط الذكي
+import { Link } from 'react-router-dom'
 
-// قمت بتعديل المصفوفة لتشمل الاسم والمسار (اختياري لكن أفضل للتنظيم)
 const quickLinks = [
   { name: 'About Us', path: '/about' },
   { name: 'Shipping', path: '/shipping' },
   { name: 'Brew Guide', path: '/brew-guide' },
-  { name: 'Support', path: '#' }
+  { name: 'Support', path: '/support' }  // ← ← تم التحديث
 ]
 
 export function HomeFooter() {
   return (
     <footer className="relative overflow-hidden rounded-[1.8rem] border border-white/45 bg-white/22 p-6 shadow-[0_24px_70px_-45px_rgba(72,45,32,0.85)] backdrop-blur-xl md:p-8">
       <div className="coffee-hero-gradient absolute inset-0 opacity-35" />
-      
+
       {/* Liquid Blobs */}
       <div
         className="liquid-blob absolute -bottom-16 left-10 h-32 w-32 bg-[#7d4930]/35"
@@ -39,14 +38,14 @@ export function HomeFooter() {
           </p>
         </div>
 
-        {/* Quick Links - التعديل هنا */}
+        {/* Quick Links */}
         <div>
           <h3 className="text-xs font-semibold uppercase tracking-[0.16em] text-[#6f4f3b]">Quick Links</h3>
           <ul className="mt-3 space-y-2">
             {quickLinks.map((item) => (
               <li key={item.name}>
-                <Link 
-                  to={item.path} 
+                <Link
+                  to={item.path}
                   className="text-sm text-[#4f2f21] transition-colors hover:text-[#7a4d35] hover:font-bold"
                 >
                   {item.name}

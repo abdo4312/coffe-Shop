@@ -1,4 +1,8 @@
+import { useNavigate } from 'react-router-dom';
+
 export function PromoSection() {
+  const navigate = useNavigate();
+
   return (
     <section className="pb-2">
       <div className="relative overflow-hidden rounded-[1.8rem] border border-white/45 bg-white/22 p-6 shadow-[0_24px_70px_-45px_rgba(72,45,32,0.85)] backdrop-blur-xl md:p-8">
@@ -15,7 +19,10 @@ export function PromoSection() {
             </p>
           </div>
 
-          <button className="rounded-xl bg-[#553220] px-6 py-3 text-sm font-semibold text-[#fff5ea] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#422617] hover:shadow-[0_10px_25px_-8px_rgba(54,31,21,0.7)]">
+          <button
+            onClick={() => navigate('/golden-hour')}
+            className="rounded-xl bg-[#553220] px-6 py-3 text-sm font-semibold text-[#fff5ea] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#422617] hover:shadow-[0_10px_25px_-8px_rgba(54,31,21,0.7)]"
+          >
             Claim the Offer
           </button>
         </div>

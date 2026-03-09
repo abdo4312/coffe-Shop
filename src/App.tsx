@@ -17,6 +17,11 @@ import { QuickViewModal } from '@/features/products/QuickViewModal'
 import { HomeHeader } from '@/features/home/HomeHeader';
 import { HomeFooter } from '@/features/home/HomeFooter';
 import { BuildYourBoxPage } from '@/pages/BuildYourBoxPage'
+import { SupportPage } from '@/pages/SupportPage'
+import { CoffeeToolsPage } from '@/pages/CoffeeToolsPage'
+import { BookingFormPage } from '@/pages/BookingFormPage'
+import { GoldenHourPage } from '@/pages/GoldenHourPage'
+
 
 
 function App() {
@@ -36,6 +41,7 @@ function App() {
           <Route path="/gift-cards" element={<GiftCards />} />
           <Route path="/cart" element={<CartPage />} />
           <Route path="/build-your-box" element={<BuildYourBoxPage />} />
+          <Route path="/support" element={<SupportPage />} />  {/* ← ← جديد */}
           <Route path="/ads" element={<Navigate to="/beans" replace />} />
           <Route path="/coffee" element={<Navigate to="/coffee-list" replace />} />
           <Route path="/checkout" element={<CheckoutPage />} />
@@ -43,12 +49,14 @@ function App() {
           <Route path="/shipping" element={<ShippingPage />} />
           <Route path="/brew-guide" element={<BrewGuidePage />} />
           <Route path="*" element={<Navigate to="/" replace />} />
+          <Route path="/coffee-tools" element={<CoffeeToolsPage />} />
+          <Route path="/booking-form" element={<BookingFormPage />} />
+          <Route path="/golden-hour" element={<GoldenHourPage />} />
         </Routes>
       </main>
 
       <HomeFooter />
 
-      {/* ← ← ← ده اللي كان ناقص! */}
       <QuickViewModal />
 
     </CartProvider>

@@ -14,6 +14,7 @@ export interface Product {
   inStock: boolean
   variants: ProductVariant[]
   createdAt: string
+  isNew?: boolean  // ← ← أضفنا ده
 }
 
 export interface ProductVariant {
