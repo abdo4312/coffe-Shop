@@ -2,14 +2,14 @@ import { useMemo, useState } from 'react'
 import { cn } from '@/shared/utils/cn'
 
 const categories = [
-  'الكل',
-  'سينجل أوريجن',
-  'إسبريسو بليند',
-  'Roast داكن',
-  'عروض الموسم',
+  'All',
+  'Single Origin',
+  'Espresso Blend',
+  'Dark Roast',
+  'Season Offers',
 ] as const
 
-const viewModes = ['كل الإعلانات', 'الأكثر مبيعًا'] as const
+const viewModes = ['All Ads', 'Best Sellers'] as const
 
 type BeansCategory = (typeof categories)[number]
 type ViewMode = (typeof viewModes)[number]
@@ -19,7 +19,7 @@ interface BeanAd {
   title: string
   description: string
   price: string
-  category: Exclude<BeansCategory, 'الكل'>
+  category: Exclude<BeansCategory, 'All'>
   image: string
   cta: string
   isBestSeller: boolean
@@ -29,20 +29,20 @@ const beanAds: BeanAd[] = [
   {
     id: 'beans-ethiopian-bloom',
     title: 'Ethiopian Bloom - 250g',
-    description: 'حبوب فاكهية مع لمسات زهرية وحموضة متوازنة للتحضير اليومي.',
-    price: '289 جنيه',
-    category: 'سينجل أوريجن',
+    description: 'Fruity beans with floral notes and balanced acidity for daily brewing.',
+    price: '289 SAR',
+    category: 'Single Origin',
     image:
       'https://images.unsplash.com/photo-1447933601403-0c6688de566e?auto=format&fit=crop&w=1200&q=80',
-    cta: 'اشتر الآن',
+    cta: 'Buy Now',
     isBestSeller: true,
   },
   {
     id: 'beans-colombia-caramel',
     title: 'Colombia Caramel Notes',
-    description: 'جسم ناعم بطابع كراميل وشوكولاتة حليب، مناسب للإسبريسو.',
-    price: '269 جنيه',
-    category: 'إسبريسو بليند',
+    description: 'Smooth body with caramel and milk chocolate notes, suitable for espresso.',
+    price: '269 SAR',
+    category: 'Espresso Blend',
     image:
       'https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=1200&q=80',
     cta: 'Add to Cart',
@@ -51,61 +51,61 @@ const beanAds: BeanAd[] = [
   {
     id: 'beans-night-roast',
     title: 'Night Roast - Dark Blend',
-    description: 'Roast داكن بنكهة كاكاو مركزة ولمسة دخانية خفيفة.',
-    price: '255 جنيه',
-    category: 'Roast داكن',
+    description: 'Dark roast with concentrated cocoa flavor and a light smoky touch.',
+    price: '255 SAR',
+    category: 'Dark Roast',
     image:
       'https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=1200&q=80',
-    cta: 'جرّبه الآن',
+    cta: 'Try Now',
     isBestSeller: false,
   },
   {
     id: 'beans-house-espresso',
     title: 'House Espresso Signature',
-    description: 'مزيج متوازن بكريما ثابتة، مثالي لللاتيه والكابتشينو.',
-    price: '299 جنيه',
-    category: 'إسبريسو بليند',
+    description: 'Balanced blend with stable crema, perfect for latte and cappuccino.',
+    price: '299 SAR',
+    category: 'Espresso Blend',
     image:
       'https://images.unsplash.com/photo-1517701604599-bb29b565090c?auto=format&fit=crop&w=1200&q=80',
-    cta: 'اعرف التفاصيل',
+    cta: 'Details',
     isBestSeller: true,
   },
   {
     id: 'beans-kenya-bright',
     title: 'Kenya Bright Berry',
-    description: 'إيحاءات توتية واضحة ونهاية نظيفة لعشاق القهوة المختصة.',
-    price: '315 جنيه',
-    category: 'سينجل أوريجن',
+    description: 'Clear berry notes and a clean finish for specialty coffee lovers.',
+    price: '315 SAR',
+    category: 'Single Origin',
     image:
       'https://images.unsplash.com/photo-1461023058943-07fcbe16d735?auto=format&fit=crop&w=1200&q=80',
-    cta: 'اشتر الآن',
+    cta: 'Buy Now',
     isBestSeller: false,
   },
   {
     id: 'beans-weekend-offer',
     title: 'Weekend Beans Bundle',
-    description: 'عرض موسمي: 3 أكياس متنوعة مع خصم خاص لفترة محدودة.',
-    price: '699 جنيه',
-    category: 'عروض الموسم',
+    description: 'Seasonal offer: 3 diverse bags with a special limited-time discount.',
+    price: '699 SAR',
+    category: 'Season Offers',
     image:
       'https://images.unsplash.com/photo-1459755486867-b55449bb39ff?auto=format&fit=crop&w=1200&q=80',
-    cta: 'استفد بالعرض',
+    cta: 'View Offer',
     isBestSeller: true,
   },
 ]
 
 export function AdsPage() {
-  const [activeCategory, setActiveCategory] = useState<BeansCategory>('الكل')
-  const [activeViewMode, setActiveViewMode] = useState<ViewMode>('كل الإعلانات')
+  const [activeCategory, setActiveCategory] = useState<BeansCategory>('All')
+  const [activeViewMode, setActiveViewMode] = useState<ViewMode>('All Ads')
 
   const filteredAds = useMemo(() => {
     let ads = beanAds
 
-    if (activeCategory !== 'الكل') {
+    if (activeCategory !== 'All') {
       ads = ads.filter((ad) => ad.category === activeCategory)
     }
 
-    if (activeViewMode === 'الأكثر مبيعًا') {
+    if (activeViewMode === 'Best Sellers') {
       ads = ads.filter((ad) => ad.isBestSeller)
     }
 
@@ -136,9 +136,9 @@ export function AdsPage() {
             <p className="mb-4 inline-flex rounded-full border border-white/50 bg-white/40 px-4 py-1 text-xs font-semibold uppercase tracking-[0.18em] text-[#5d3a27]">
               Beans Promotion Hub
             </p>
-            <h1 className="text-4xl font-bold leading-tight md:text-6xl">الإعلانات المميزة</h1>
+            <h1 className="text-4xl font-bold leading-tight md:text-6xl">Premium Promotions</h1>
             <p className="mx-auto mt-4 max-w-3xl text-sm text-[#5c3b2a] md:text-base">
-              أفضل عروض حبوب القهوة المختصة مع اختيارات فاخرة للإسبريسو والتقطير.
+              The best specialty coffee bean offers with premium choices for espresso and pour-over.
             </p>
           </div>
         </section>
@@ -147,7 +147,7 @@ export function AdsPage() {
           <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
             <div className="flex flex-wrap items-center gap-2">
               <span className="mr-2 text-xs font-semibold uppercase tracking-[0.16em] text-[#6d4a35]">
-                تصفية بالكاتيجوري
+                Filter by Category
               </span>
               {categories.map((category) => (
                 <button
@@ -206,7 +206,7 @@ export function AdsPage() {
                   </span>
                   {ad.isBestSeller && (
                     <span className="rounded-full border border-[#ffe0bf]/65 bg-[#f5c08d]/45 px-3 py-1 text-[11px] font-semibold text-[#3f2416] backdrop-blur-md">
-                      الأكثر مبيعًا
+                      Best Seller
                     </span>
                   )}
                 </div>

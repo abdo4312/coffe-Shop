@@ -13,23 +13,23 @@ const giftCards: GiftCard[] = [
   {
     id: 'bronze',
     amount: 100,
-    title: 'بطاقة الصباح',
+    title: 'Morning Card',
     color: 'from-[#D4B895] to-[#A68A68]',
-    perks: ['صالحة لمدة 6 أشهر', 'تصلح لجميع أدوات القهوة']
+    perks: ['Valid for 6 months', 'Valid for all coffee tools']
   },
   {
     id: 'silver',
     amount: 250,
-    title: 'بطاقة المزاج',
+    title: 'Mood Card',
     color: 'from-[#8C6239] to-[#6B4423]',
-    perks: ['صالحة لمدة سنة', 'تغليف هدايا Free', 'شحن Free لمرة واحدة']
+    perks: ['Valid for 1 year', 'Free Gift Wrap', 'One-time Free Shipping']
   },
   {
     id: 'gold',
     amount: 500,
-    title: 'بطاقة الباريستا',
+    title: 'Barista Card',
     color: 'from-[#4A3B32] to-[#2E1F18]',
-    perks: ['صلاحية مدى الحياة', 'تغليف فاخر جداً', 'خصم 10% على الطلب القادم']
+    perks: ['Lifetime Validity', 'Ultra-Premium Gift Wrap', '10% Discount on Next Order']
   }
 ];
 
@@ -49,13 +49,13 @@ export function GiftCards() {
         <header className="py-16 text-center space-y-4">
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#8C6239]/10 text-[#8C6239] text-sm font-bold mb-2">
             <Heart size={16} className="fill-current" />
-            <span>شاركهم شغف القهوة</span>
+            <span>Share the Coffee Passion</span>
           </div>
           <h1 className="text-4xl md:text-6xl font-black text-[#4A3B32]">
-            بطاقات <span className="text-[#8C6239]">الإهداء</span>
+            <span className="text-[#8C6239]">Gift Cards</span>
           </h1>
           <p className="text-[#6B4423]/70 max-w-lg mx-auto text-lg">
-            أفضل هدية لمحبي القهوة هي حرية اختيار أدواتهم المفضلة بأنفسهم.
+            The best gift for coffee lovers is the freedom to choose their favorite tools themselves.
           </p>
         </header>
 
@@ -76,7 +76,7 @@ export function GiftCards() {
                   </div>
                   
                   <div>
-                    <div className="text-sm opacity-80 mb-1">قيمة البطاقة</div>
+                    <div className="text-sm opacity-80 mb-1">Card Value</div>
                     <div className="text-5xl font-black">{selectedAmount} <span className="text-xl">SAR</span></div>
                   </div>
 
@@ -92,7 +92,7 @@ export function GiftCards() {
 
             {/* Selection Options */}
             <div className="space-y-8 bg-white/40 backdrop-blur-md p-8 rounded-[2.5rem] border border-white/60 shadow-xl">
-              <h3 className="text-2xl font-bold text-[#4A3B32]">اختر القيمة</h3>
+              <h3 className="text-2xl font-bold text-[#4A3B32]">Choose Value</h3>
               <div className="grid grid-cols-3 gap-4">
                 {giftCards.map((card) => (
                   <button
@@ -120,7 +120,7 @@ export function GiftCards() {
 
               <button className="w-full py-4 bg-[#8C6239] text-white rounded-2xl font-bold text-lg flex items-center justify-center gap-2 hover:bg-[#6B4423] transition-colors shadow-lg shadow-[#8C6239]/20">
                 <Send size={20} />
-                إرسال كهدية
+                Send as Gift
               </button>
             </div>
           </div>
@@ -129,9 +129,9 @@ export function GiftCards() {
         {/* How it works section */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
           {[
-            { step: '01', title: 'اختر القيمة', desc: 'حدد المبلغ المناسب لهديتك من الخيارات المتاحة.' },
-            { step: '02', title: 'أضف بيانات المستلم', desc: 'اكتب بريده الإلكتروني ورسالة خاصة منك.' },
-            { step: '03', title: 'وصول فوري', desc: 'ستصل البطاقة لصندوق بريده في أقل من دقيقة.' }
+            { step: '01', title: 'Choose Value', desc: 'Select the appropriate amount for your gift from the available options.' },
+            { step: '02', title: 'Add Recipient Info', desc: 'Enter their email address and a special message from you.' },
+            { step: '03', title: 'Instant Arrival', desc: 'The card will reach their inbox in less than a minute.' }
           ].map((item, idx) => (
             <div key={idx} className="p-6 space-y-3">
               <span className="text-4xl font-black text-[#D4B895]/30">{item.step}</span>

@@ -15,11 +15,11 @@ export function AboutPage() {
         {/* Header Section */}
         <header className="mb-20 text-center">
           <div className="inline-block rounded-full bg-white/40 px-6 py-2 backdrop-blur-md border border-white/60 mb-6">
-            <span className="text-sm font-bold tracking-widest text-[#8C6239] uppercase">Our Story منذ البداية</span>
+            <span className="text-sm font-bold tracking-widest text-[#8C6239] uppercase">Our Story - From the Beginning</span>
           </div>
           <h1 className="text-6xl font-black text-[#4A3B32] md:text-7xl">
-            نحن أكثر من مجرد <br />
-            <span className="text-[#8C6239]">متجر قهوة</span>
+            We are more than just a <br />
+            <span className="text-[#8C6239]">Coffee Store</span>
           </h1>
         </header>
 
@@ -27,18 +27,18 @@ export function AboutPage() {
         <div className="grid gap-12 lg:grid-cols-2 lg:items-center">
           <div className="group relative overflow-hidden rounded-[3rem] border border-white/60 bg-white/30 p-10 backdrop-blur-2xl shadow-2xl transition-all hover:bg-white/40">
             <div className="relative z-10 space-y-6">
-              <h2 className="text-3xl font-bold text-[#4A3B32]">رسالتنا الفاخرة</h2>
+              <h2 className="text-3xl font-bold text-[#4A3B32]">Our Premium Mission</h2>
               <p className="leading-relaxed text-[#6B4423]/80 text-lg">
-                في <span className="font-bold text-[#8C6239]">Aroma Corner</span>، نؤمن أن كل كوب قهوة هو رحلة تبدأ من مزارع المرتفعات العالية لتنتهي بلحظة صفاء في يومك. نحن لا نبيع الحبوب فحسب، بل نختار "المحاصيل" التي تحمل هوية الأرض ونكهة الشغف.
+                At <span className="font-bold text-[#8C6239]">Aroma Corner</span>, we believe every cup of coffee is a journey starting from high-altitude farms to end in a moment of clarity in your day. We don't just sell beans; we select "crops" that carry the land's identity and the flavor of passion.
               </p>
               <div className="flex gap-4">
                 <div className="flex flex-col items-center gap-2 rounded-2xl bg-[#4A3B32] p-4 text-white w-28">
                   <Award size={24} />
-                  <span className="text-xs">جودة عالمية</span>
+                  <span className="text-xs">Global Quality</span>
                 </div>
                 <div className="flex flex-col items-center gap-2 rounded-2xl bg-white/60 p-4 text-[#4A3B32] w-28 border border-white">
                   <Heart size={24} className="text-[#8C6239]" />
-                  <span className="text-xs">شغف خالص</span>
+                  <span className="text-xs">Pure Passion</span>
                 </div>
               </div>
             </div>
@@ -64,25 +64,25 @@ export function AboutPage() {
         <div className="mt-32 grid gap-8 md:grid-cols-3">
           <ValueCard 
             icon={<Target size={32} />} 
-            title="رؤيتنا" 
-            description="أن نصبح المرجع الأول لعشاق القهوة المختصة في المنطقة، مع الحفاظ على استدامة المزارع وجودة الRoast."
+            title="Our Vision" 
+            description="To become the primary reference for specialty coffee enthusiasts in the region, while maintaining farm sustainability and roast quality."
           />
           <ValueCard 
             icon={<Users size={32} />} 
-            title="مجتمعنا" 
-            description="نحن نبني مجتمعاً يقدّر النوتات العطرية ويفهم فنون الاستخلاص، ونشارككم كل جديد في عالم القهوة."
+            title="Our Community" 
+            description="We build a community that appreciates aromatic notes and understands the art of extraction, sharing all that's new in the world of coffee with you."
           />
           <ValueCard 
             icon={<Award size={32} />} 
-            title="التزامنا" 
-            description="نلتزم بتقديم محاصيل طازجة، محمصة بحب، ومغلفة بتقنيات تحفظ العطر الفواح حتى يصل إلى باب منزلك."
+            title="Our Commitment" 
+            description="We are committed to providing fresh crops, roasted with love, and packaged with techniques that preserve the aromatic scent until it reaches your doorstep."
           />
         </div>
 
         {/* Call to Action */}
         <div className="mt-32 rounded-[3.5rem] bg-[#4A3B32] p-12 text-center text-white shadow-2xl relative overflow-hidden">
           <div className="absolute top-0 right-0 w-64 h-64 bg-[#8C6239]/20 rounded-full blur-[80px] -translate-y-1/2 translate-x-1/2" />
-          <h2 className="text-4xl font-black mb-6">هل أنت جاهز لتجربة المذاق الأصيل؟</h2>
+          <h2 className="text-4xl font-black mb-6">Are you ready for the authentic taste experience?</h2>
           <button className="rounded-2xl bg-white px-10 py-4 text-lg font-bold text-[#4A3B32] transition-all hover:bg-[#FAF7F2] hover:scale-105 active:scale-95">
             Browse Beans Now
           </button>

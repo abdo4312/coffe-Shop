@@ -6,7 +6,7 @@ const featuredProducts = [
     name: 'Colombian Caramel Roast',
     note: 'Velvety body with toffee finish.',
     roast: 'medium roast',
-    price: '$14.90',
+    price: '65 SAR',
     image: 'https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=900&q=80',
   },
   {
@@ -14,7 +14,7 @@ const featuredProducts = [
     name: 'Ethiopian Bloom Beans',
     note: 'Floral aroma and citrus sparkle.',
     roast: 'light roast',
-    price: '$16.40',
+    price: '72 SAR',
     image: 'https://images.unsplash.com/photo-1447933601403-0c6688de566e?auto=format&fit=crop&w=900&q=80',
   },
   {
@@ -22,7 +22,7 @@ const featuredProducts = [
     name: 'Midnight Espresso Blend',
     note: 'Dark cocoa and smoky sweetness.',
     roast: 'dark roast',
-    price: '$13.75',
+    price: '58 SAR',
     image: 'https://images.unsplash.com/photo-1517701604599-bb29b565090c?auto=format&fit=crop&w=900&q=80',
   },
   {
@@ -30,7 +30,7 @@ const featuredProducts = [
     name: 'Vanilla Cold Brew Pack',
     note: 'Smooth finish for iced coffee days.',
     roast: 'cold brew',
-    price: '$11.90',
+    price: '45 SAR',
     image: 'https://images.unsplash.com/photo-1461023058943-07fcbe16d735?auto=format&fit=crop&w=900&q=80',
   },
 ];
@@ -42,8 +42,8 @@ export function FeaturedProducts() {
   const handleAddToCart = (e: React.MouseEvent, product: typeof featuredProducts[0]) => {
     e.stopPropagation(); // يمنع فتح صفحة التفاصيل عند الضغط على زر الإضافة
     
-    // تحويل السعر من نص "$14.90" إلى رقم 14.90
-    const numericPrice = parseFloat(product.price.replace('$', ''));
+    // Convert price string "65 SAR" to number 65
+    const numericPrice = parseFloat(product.price.replace(' SAR', ''));
     
     addItem({
       id: product.id,

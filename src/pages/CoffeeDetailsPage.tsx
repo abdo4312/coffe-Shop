@@ -9,15 +9,15 @@ export function CoffeeDetails() {
 
   // بيانات تجريبية لنوع القهوة (يمكنك لاحقاً جلبها عبر الـ ID)
   const coffeeData = {
-    name: "إسبريسو إثيوبي مختص",
-    category: "Roast متوسط",
+    name: "Specialty Ethiopian Espresso",
+    category: "Medium Roast",
     price: 85,
     rating: 4.9,
     reviews: 124,
-    description: "تتميز هذه القهوة بإيحاءات الفواكه المجففة والكراميل، تمت معالجتها بالطريقة المجففة لتعطيك قواماً ممتلئاً وحلاوة طبيعية في كل كوب.",
+    description: "This coffee features notes of dried fruits and caramel, processed using the natural method to give you a full body and natural sweetness in every cup.",
     image: "https://images.unsplash.com/photo-1559056199-641a0ac8b55e?auto=format&fit=crop&q=80&w=600",
-    notes: ["كراميل", "شوكولاتة", "فواكه"],
-    origin: "إثيوبيا - منطقة ييرغاشيفي"
+    notes: ["Caramel", "Chocolate", "Fruits"],
+    origin: "Ethiopia - Yirgacheffe Region"
   };
 
   return (
@@ -26,7 +26,7 @@ export function CoffeeDetails() {
       <button 
         onClick={() => navigate(-1)}
         className="fixed left-6 top-24 z-50 p-4 rounded-full bg-white/40 backdrop-blur-xl border border-white/60 shadow-2xl text-[#4A3B32] hover:bg-[#4A3B32] hover:text-white transition-all duration-300 group"
-        title="رجوع"
+        title="Back"
       >
         <ArrowLeft size={28} className="group-hover:-translate-x-1 transition-transform" />
       </button>
@@ -59,7 +59,7 @@ export function CoffeeDetails() {
               <span className="text-[#8C6239] font-bold tracking-widest uppercase text-sm">{coffeeData.category}</span>
               <h1 className="text-5xl font-black text-[#4A3B32]">{coffeeData.name}</h1>
               <p className="text-[#6B4423]/60 flex items-center gap-2 font-medium">
-                <Leaf size={16} /> المصدر: {coffeeData.origin}
+                <Leaf size={16} /> Origin: {coffeeData.origin}
               </p>
             </div>
 
@@ -78,7 +78,7 @@ export function CoffeeDetails() {
 
             {/* Selection - Size */}
             <div className="space-y-4">
-              <h3 className="font-bold text-[#4A3B32]">اختر الحجم:</h3>
+              <h3 className="font-bold text-[#4A3B32]">Choose Size:</h3>
               <div className="flex gap-3">
                 {['250g', '500g', '1kg'].map((size) => (
                   <button
@@ -101,7 +101,7 @@ export function CoffeeDetails() {
             {/* Price & Action */}
             <div className="flex items-center justify-between gap-6">
               <div>
-                <span className="text-sm text-[#6B4423]/60 block mb-1">السعر التقريبي</span>
+                <span className="text-sm text-[#6B4423]/60 block mb-1">Approximate Price</span>
                 <span className="text-4xl font-black text-[#4A3B32]">{coffeeData.price} <small className="text-lg">SAR</small></span>
               </div>
 
@@ -121,15 +121,15 @@ export function CoffeeDetails() {
             <div className="grid grid-cols-3 gap-4 pt-4">
                <div className="flex flex-col items-center gap-1 text-[#6B4423]/60">
                   <Zap size={20} className="text-[#8C6239]" />
-                  <span className="text-xs font-bold">طاقة عالية</span>
+                  <span className="text-xs font-bold">High Energy</span>
                </div>
                <div className="flex flex-col items-center gap-1 text-[#6B4423]/60">
                   <Clock size={20} className="text-[#8C6239]" />
-                  <span className="text-xs font-bold">Roast طازج</span>
+                  <span className="text-xs font-bold">Fresh Roast</span>
                </div>
                <div className="flex flex-col items-center gap-1 text-[#6B4423]/60">
                   <Coffee size={20} className="text-[#8C6239]" />
-                  <span className="text-xs font-bold">100% أرابيكا</span>
+                  <span className="text-xs font-bold">100% Arabica</span>
                </div>
             </div>
 

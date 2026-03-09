@@ -11,10 +11,10 @@ const guides = [
     grind: 'Medium Fine',
     image: 'https://images.unsplash.com/photo-1544787210-22da3ef59ba3?w=800',
     steps: [
-      "ضع الفلتر وبلله بالماء الساخن للتخلص من طعم الورق.",
-      "أضف 20 جرام من القهوة المطحونة وابدأ بالترطيب (40 مل ماء).",
-      "صب الماء بحركات دائرية منتظمة حتى تصل لـ 300 مل.",
-      "استمتع بكوب قهوة نقي وواضح النكهات."
+      "Place the filter and wet it with hot water to remove any paper taste.",
+      "Add 20 grams of ground coffee and start blooming (40 ml water).",
+      "Pour water in steady circular motions until you reach 300 ml.",
+      "Enjoy a clean cup of coffee with clear flavors."
     ]
   },
   {
@@ -26,10 +26,10 @@ const guides = [
     grind: 'Medium Coarse',
     image: 'https://images.unsplash.com/photo-1521302080334-4bebac2763a6?w=800',
     steps: [
-      "استخدم فلتر كيمكس السميك لضمان نقاوة عالية.",
-      "ابدأ بصب الماء ببطء في المنتصف ثم اتجه للخارج.",
-      "حافظ على مستوى تدفق ثابت للماء.",
-      "النهاية ستعطيك كوباً معتدل الحمضية وقواماً خفيفاً."
+      "Use a thick Chemex filter for high clarity.",
+      "Start by pouring water slowly in the center then move outwards.",
+      "Maintain a steady flow of water.",
+      "The result will be a balanced acidity and light body."
     ]
   },
   {
@@ -41,10 +41,10 @@ const guides = [
     grind: 'Fine',
     image: 'https://images.unsplash.com/photo-1510591509098-f4fdc6d0ff04?w=800',
     steps: [
-      "ضع القهوة في الأداة وأضف الماء الساخن.",
-      "حرك المزيج لمدة 10 ثوانٍ لضمان التجانس.",
-      "انتظر دقيقة واحدة ثم ابدأ بالكبس ببطء.",
-      "مثالية للحصول على قهوة مركزة تشبه الإسبريسو."
+      "Place the coffee in the tool and add hot water.",
+      "Stir the mixture for 10 seconds for consistency.",
+      "Wait for one minute then start pressing slowly.",
+      "Ideal for obtaining a concentrated coffee similar to espresso."
     ]
   }
 ];
@@ -65,13 +65,13 @@ export function BrewGuidePage() {
         <header className="mb-20 text-center">
           <div className="mb-6 inline-flex items-center gap-2 rounded-full bg-white/40 px-6 py-2 border border-white/60 backdrop-blur-md">
             <Coffee className="text-[#8C6239]" size={18} />
-            <span className="text-xs font-bold tracking-[0.2em] text-[#8C6239] uppercase">دليل الباريستا المنزلي</span>
+            <span className="text-xs font-bold tracking-[0.2em] text-[#8C6239] uppercase">Home Barista Guide</span>
           </div>
           <h1 className="text-5xl font-black text-[#4A3B32] md:text-7xl">
-            فن <span className="text-[#8C6239]">الاستخلاص</span>
+            The Art of <span className="text-[#8C6239]">Extraction</span>
           </h1>
           <p className="mt-6 text-[#6B4423]/70 max-w-2xl mx-auto text-lg leading-relaxed">
-            لأن المحصول الفاخر يستحق تحضيراً دقيقاً، نقدم لك الدليل الذهبي لاستخلاص النكهات الكامنة في حبوبنا.
+            Since premium crops deserve precise preparation, we offer you the golden guide to extracting the hidden flavors within our beans.
           </p>
         </header>
 
@@ -95,15 +95,15 @@ export function BrewGuidePage() {
                   
                   {/* Specs Grid */}
                   <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-10">
-                    <SpecItem icon={<Scale size={18} />} label="النسبة" value={guide.ratio} />
-                    <SpecItem icon={<Thermometer size={18} />} label="الحرارة" value={guide.temp} />
-                    <SpecItem icon={<Timer size={18} />} label="الوقت" value={guide.time} />
-                    <SpecItem icon={<Droplets size={18} />} label="الطحنة" value={guide.grind} />
+                    <SpecItem icon={<Scale size={18} />} label="Ratio" value={guide.ratio} />
+                    <SpecItem icon={<Thermometer size={18} />} label="Temp" value={guide.temp} />
+                    <SpecItem icon={<Timer size={18} />} label="Time" value={guide.time} />
+                    <SpecItem icon={<Droplets size={18} />} label="Grind" value={guide.grind} />
                   </div>
 
                   {/* Steps */}
                   <div className="space-y-4">
-                    <h4 className="text-sm font-black uppercase text-[#8C6239] tracking-widest mb-4">طريقة التحضير:</h4>
+                    <h4 className="text-sm font-black uppercase text-[#8C6239] tracking-widest mb-4">Brewing Method:</h4>
                     {guide.steps.map((step, index) => (
                       <div key={index} className="flex gap-4 items-start text-[#6B4423]/90">
                         <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-[#4A3B32] text-[10px] font-bold text-white">
@@ -125,8 +125,8 @@ export function BrewGuidePage() {
             onClick={() => navigate('/coffee-list')}
             className="group flex items-center gap-3 mx-auto rounded-2xl bg-[#4A3B32] px-10 py-5 text-xl font-black text-white shadow-2xl transition-all hover:bg-[#2E1F18] hover:-translate-y-1"
           >
-            تصفح المحاصيل المناسبة لهذه الأدوات
-            <ChevronRight className="rotate-180 group-hover:-translate-x-2 transition-transform" />
+            Browse crops suitable for these tools
+            <ChevronRight className="group-hover:translate-x-2 transition-transform" />
           </button>
         </div>
       </div>
