@@ -1,4 +1,8 @@
+import { useNavigate } from 'react-router-dom'
+
 export function HeroBanner() {
+  const navigate = useNavigate()
+
   const highlights = [
     { label: 'Freshly Roasted', value: '48h' },
     { label: 'Coffee Origins', value: '12+' },
@@ -24,10 +28,16 @@ export function HeroBanner() {
           </p>
 
           <div className="flex flex-wrap items-center gap-3">
-            <button className="rounded-xl bg-[#5d3a27] px-7 py-3 text-sm font-semibold text-[#fff8f1] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#4a2e1f] hover:shadow-[0_10px_25px_-8px_rgba(54,31,21,0.7)]">
+            <button
+              onClick={() => navigate('/shop-beans')}
+              className="rounded-xl bg-[#5d3a27] px-7 py-3 text-sm font-semibold text-[#fff8f1] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#4a2e1f] hover:shadow-[0_10px_25px_-8px_rgba(54,31,21,0.7)]"
+            >
               Shop Signature Beans
             </button>
-            <button className="rounded-xl border border-white/60 bg-white/35 px-7 py-3 text-sm font-semibold text-[#4a2e1f] backdrop-blur-md transition-all duration-300 hover:bg-white/55">
+            <button
+              onClick={() => navigate('/build-your-box')}
+              className="rounded-xl border border-white/60 bg-white/35 px-7 py-3 text-sm font-semibold text-[#4a2e1f] backdrop-blur-md transition-all duration-300 hover:bg-white/55"
+            >
               Build Your Box
             </button>
           </div>

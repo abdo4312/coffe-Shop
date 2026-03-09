@@ -1,8 +1,8 @@
 // الصفحة أصبحت الآن "خفيفة" جداً ومركزة على المحتوى الخاص بالهوم فقط
-import { HeroBanner }         from '@/features/home/HeroBanner'
-import { FeaturedCategories }  from '@/features/home/FeaturedCategories'
-import { FeaturedProducts }    from '@/features/home/FeaturedProducts'
-import { PromoSection }        from '@/features/home/PromoSection'
+import { HeroBanner } from '@/features/home/HeroBanner'
+import { FeaturedCategories } from '@/features/home/FeaturedCategories'
+import { FeaturedProducts } from '@/features/home/FeaturedProducts'
+import { PromoSection } from '@/features/home/PromoSection'
 
 export function HomePage() {
   return (

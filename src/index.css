@@ -26,13 +26,17 @@ body {
   min-height: 100vh;
 }
 
+/* ===== Coffee Blob Animations ===== */
+
 @keyframes coffeeBlobA {
   0% {
     transform: translate3d(0, 0, 0) scale(1);
   }
+
   50% {
     transform: translate3d(32px, -40px, 0) scale(1.08);
   }
+
   100% {
     transform: translate3d(0, 0, 0) scale(1);
   }
@@ -42,9 +46,11 @@ body {
   0% {
     transform: translate3d(0, 0, 0) scale(1);
   }
+
   50% {
     transform: translate3d(-40px, 28px, 0) scale(1.12);
   }
+
   100% {
     transform: translate3d(0, 0, 0) scale(1);
   }
@@ -54,9 +60,30 @@ body {
   0% {
     transform: translate3d(0, 0, 0) scale(1);
   }
+
   50% {
     transform: translate3d(26px, 36px, 0) scale(1.06);
   }
+
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+}
+
+/* 🆕 Blob D للصفحة الجديدة */
+@keyframes coffeeBlobD {
+  0% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+
+  33% {
+    transform: translate3d(-25px, 35px, 0) scale(1.05);
+  }
+
+  66% {
+    transform: translate3d(15px, -20px, 0) scale(0.95);
+  }
+
   100% {
     transform: translate3d(0, 0, 0) scale(1);
   }
@@ -66,9 +93,11 @@ body {
   0% {
     background-position: 0% 50%;
   }
+
   50% {
     background-position: 100% 50%;
   }
+
   100% {
     background-position: 0% 50%;
   }
@@ -79,19 +108,24 @@ body {
     transform: translate3d(0, 0, 0) scale(1) rotate(0deg);
     border-radius: 58% 42% 54% 46% / 45% 53% 47% 55%;
   }
+
   35% {
     transform: translate3d(10px, -12px, 0) scale(1.1) rotate(4deg);
     border-radius: 46% 54% 43% 57% / 56% 40% 60% 44%;
   }
+
   70% {
     transform: translate3d(-12px, 14px, 0) scale(0.94) rotate(-5deg);
     border-radius: 62% 38% 58% 42% / 39% 58% 42% 61%;
   }
+
   100% {
     transform: translate3d(0, 0, 0) scale(1) rotate(0deg);
     border-radius: 58% 42% 54% 46% / 45% 53% 47% 55%;
   }
 }
+
+/* ===== Coffee Blob Classes ===== */
 
 .coffee-blob {
   pointer-events: none;
@@ -125,14 +159,22 @@ body {
   animation: coffeeBlobC 24s ease-in-out infinite;
 }
 
+/* 🆕 Blob D للـ Shop Page */
+.coffee-blob-d {
+  top: 40%;
+  right: -12rem;
+  background: radial-gradient(circle, #d4a574 0%, #8c6239 55%, transparent 100%);
+  animation: coffeeBlobD 26s ease-in-out infinite;
+}
+
+/* ===== Other Utility Classes ===== */
+
 .coffee-hero-gradient {
-  background: linear-gradient(
-    120deg,
-    rgba(255, 214, 173, 0.65),
-    rgba(214, 158, 116, 0.42),
-    rgba(115, 72, 48, 0.42),
-    rgba(246, 203, 163, 0.58)
-  );
+  background: linear-gradient(120deg,
+      rgba(255, 214, 173, 0.65),
+      rgba(214, 158, 116, 0.42),
+      rgba(115, 72, 48, 0.42),
+      rgba(246, 203, 163, 0.58));
   background-size: 280% 280%;
   animation: coffeeGradientShift 16s ease infinite;
 }
@@ -147,7 +189,10 @@ body {
   animation-delay: var(--blob-delay, 0s);
 }
 
+/* ===== Reduced Motion ===== */
+
 @media (prefers-reduced-motion: reduce) {
+
   .coffee-blob,
   .coffee-hero-gradient,
   .liquid-blob {
