@@ -19,8 +19,8 @@ export const productsService = {
     return new Promise((resolve) => {
       setTimeout(() => {
         resolve([
-          { id: '1', name: 'قهوة', price: 5, description: 'قهوة ساخنة', imageUrl: 'https://via.placeholder.com/150' },
-          { id: '2', name: 'شاي', price: 3, description: 'شاي أخضر', imageUrl: 'https://via.placeholder.com/150' },
+          { id: '1', name: 'Coffee', price: 5, description: 'Hot coffee', imageUrl: 'https://via.placeholder.com/150' },
+          { id: '2', name: 'Tea', price: 3, description: 'Green tea', imageUrl: 'https://via.placeholder.com/150' },
         ]);
       }, 1000); // تأخير ثانية واحدة لمحاكاة طلب الشبكة
     });
@@ -36,9 +36,9 @@ export const productsService = {
       setTimeout(() => {
         resolve({
           id,
-          name: 'قهوة مميزة',
+          name: 'Amazing Coffee',
           price: 10,
-          description: 'أفضل قهوة في المدينة.',
+          description: 'The best coffee in town.',
         });
       }, 500);
     });
