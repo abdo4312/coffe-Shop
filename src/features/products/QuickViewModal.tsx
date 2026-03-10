@@ -46,16 +46,14 @@ export function QuickViewModal() {
 
     const handleAddToCart = () => {
         if (product.inStock) {
-            // 🔴 FIX: كان فيه loop بيعمل addItem أكتر من مرة
-            // ده بيعمل multiple state updates متتالية وهو anti-pattern
-            // الصح: بنبعت الـ quantity مرة واحدة في call واحدة
+            // ✅ FIX: بدل الـ loop — call واحدة مع الـ quantity
             addItem({
                 id: product.id,
                 name: product.name,
                 price: product.price,
                 image: product.images[0],
                 roastLevel: getRoastLevel(),
-                quantity, // ← بنبعت الـ quantity مباشرة
+                quantity,
             })
             close()
         }
