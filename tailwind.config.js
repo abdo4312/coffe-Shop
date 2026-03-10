@@ -3,14 +3,12 @@ export default {
     theme: {
         extend: {
             colors: {
-                // Design Tokens — خلي الـ colors ليها معنى
                 brand: {
-                    DEFAULT: '#5f3a26',  // 🔴 FIX: كان '#f8d9c5' (بيج فاتح) — بقى بني داكن يعمل contrast مع text-white
-                    dark: '#4a2e1f',     // 🔴 FIX: كان '#f1a75f' — أغمق للـ hover state
-                    light: '#8c5c3e',    // 🔴 FIX: كان '#c18447'
+                    DEFAULT: '#5f3a26',
+                    dark: '#4a2e1f',
+                    light: '#8c5c3e',
                 },
-                // 🔴 FIX: شلنا الـ neutral override غلط (كان أزرق!) — Tailwind هيستخدم الـ neutral الافتراضي بتاعه
-                // neutral: { 50: '#82aaea', 900: '#bfd0f3' }  ← ده كان بيكسر كل الـ dark buttons والـ text
+                // شلنا الـ neutral الغلط خالص
             },
             fontFamily: {
                 sans: ['Cairo', 'sans-serif'],
