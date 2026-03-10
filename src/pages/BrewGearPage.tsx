@@ -1,5 +1,7 @@
 import { useState } from 'react';
 import { ShoppingCart, Search, Plus, Coffee, Thermometer, Wind } from 'lucide-react';
+import { useCart } from '@/context/CartContext';
+import { Link } from 'react-router-dom'; // تأكد إنها مستوردة
 
 // تعريف واجهة المنتج
 interface Product {
@@ -25,6 +27,26 @@ const categories = ["All", "Pour-over Tools", "Grinders", "Kettles", "Accessorie
 
 export function BrewGear() {
   const [activeCategory, setActiveCategory] = useState("All");
+  const [searchQuery, setSearchQuery] = useState("");
+
+  const { addItem } = useCart();
+
+  const filteredProducts = products.filter(p => {
+    const matchesCategory = activeCategory === "All" || p.category === activeCategory;
+    const matchesSearch = p.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      p.category.toLowerCase().includes(searchQuery.toLowerCase());
+    return matchesCategory && matchesSearch;
+  });
+
+  const handleAddToCart = (product: Product) => {
+    addItem({
+      id: product.id.toString(),
+      name: product.name,
+      price: product.price,
+      image: product.image,
+      quantity: 1
+    });
+  };
 
   return (
     <div dir="ltr" className="min-h-screen bg-[#FAF7F2] relative overflow-hidden font-sans pb-20">
@@ -56,22 +78,23 @@ export function BrewGear() {
               <button
                 key={cat}
                 onClick={() => setActiveCategory(cat)}
-                className={`px-6 py-2 rounded-2xl text-sm font-bold whitespace-nowrap transition-all duration-300 ${
-                  activeCategory === cat 
-                  ? 'bg-[#4A3B32] text-white shadow-lg' 
+                className={`px-6 py-2 rounded-2xl text-sm font-bold whitespace-nowrap transition-all duration-300 ${activeCategory === cat
+                  ? 'bg-[#4A3B32] text-white shadow-lg'
                   : 'bg-white/50 text-[#4A3B32] hover:bg-white/80'
-                }`}
+                  }`}
               >
                 {cat}
               </button>
             ))}
           </div>
-          
+
           <div className="relative w-full md:w-64 group">
             <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-[#8C6239]/50 group-focus-within:text-[#8C6239] transition-colors" size={18} />
-            <input 
-              type="text" 
-              placeholder="Search for your gear..." 
+            <input
+              type="text"
+              placeholder="Search for your gear..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
               className="w-full pl-12 pr-4 py-3 rounded-2xl bg-white/50 border border-transparent focus:border-[#8C6239]/30 focus:bg-white outline-none transition-all text-[#4A3B32]"
             />
           </div>
@@ -79,54 +102,59 @@ export function BrewGear() {
 
         {/* Product Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-          {products
-            .filter(p => activeCategory === "All" || p.category === activeCategory)
-            .map((product) => (
-            <div 
-              key={product.id} 
-              className="group relative bg-white/30 backdrop-blur-sm border border-white/50 rounded-[2.5rem] overflow-hidden hover:shadow-2xl transition-all duration-500 hover:-translate-y-2"
-            >
-              {/* Image Container */}
-              <div className="relative h-72 overflow-hidden">
-                <img 
-                  src={product.image} 
-                  alt={product.name}
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                />
-                {product.tag && (
-                  <span className="absolute top-4 right-4 bg-[#4A3B32] text-white text-xs font-bold px-3 py-1.5 rounded-full">
-                    {product.tag}
-                  </span>
-                )}
-                <div className="absolute inset-0 bg-gradient-to-t from-[#4A3B32]/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-              </div>
+          {filteredProducts.length > 0 ? (
+            filteredProducts.map((product) => (
+              <div
+                key={product.id}
+                className="group relative bg-white/30 backdrop-blur-sm border border-white/50 rounded-[2.5rem] overflow-hidden hover:shadow-2xl transition-all duration-500 hover:-translate-y-2"
+              >
+                <div className="relative h-72 overflow-hidden">
+                  <img
+                    src={product.image}
+                    alt={product.name}
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                  />
+                  {product.tag && (
+                    <span className="absolute top-4 right-4 bg-[#4A3B32] text-white text-xs font-bold px-3 py-1.5 rounded-full">
+                      {product.tag}
+                    </span>
+                  )}
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#4A3B32]/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                </div>
 
-              {/* Product Info */}
-              <div className="p-6">
-                <div className="flex justify-between items-start mb-2">
-                  <span className="text-xs font-bold text-[#8C6239] uppercase tracking-wider">{product.category}</span>
-                  <div className="flex items-center gap-1 text-orange-400">
-                    <span className="text-xs font-bold text-[#4A3B32]">{product.rating}</span>
-                    <Plus size={12} className="rotate-45 fill-current" />
+                <div className="p-6">
+                  <div className="flex justify-between items-start mb-2">
+                    <span className="text-xs font-bold text-[#8C6239] uppercase tracking-wider">{product.category}</span>
+                    <div className="flex items-center gap-1 text-orange-400">
+                      <span className="text-xs font-bold text-[#4A3B32]">{product.rating}</span>
+                      <Plus size={12} className="rotate-45 fill-current" />
+                    </div>
                   </div>
-                </div>
-                <h3 className="text-xl font-bold text-[#4A3B32] mb-4 group-hover:text-[#8C6239] transition-colors">
-                  {product.name}
-                </h3>
-                
-                <div className="flex items-center justify-between mt-auto">
-                  <div className="flex flex-col">
-                    <span className="text-sm text-[#6B4423]/60">Price</span>
-                    <span className="text-2xl font-black text-[#4A3B32]">{product.price} <small className="text-sm font-medium">SAR</small></span>
+                  <h3 className="text-xl font-bold text-[#4A3B32] mb-4 group-hover:text-[#8C6239] transition-colors">
+                    {product.name}
+                  </h3>
+
+                  <div className="flex items-center justify-between mt-auto">
+                    <div className="flex flex-col">
+                      <span className="text-sm text-[#6B4423]/60">Price</span>
+                      <span className="text-2xl font-black text-[#4A3B32]">{product.price} <small className="text-sm font-medium">SAR</small></span>
+                    </div>
+
+                    <button
+                      onClick={() => handleAddToCart(product)}
+                      className="p-4 rounded-2xl bg-[#4A3B32] text-white hover:bg-[#8C6239] shadow-lg shadow-[#4A3B32]/20 transition-all active:scale-95 group/btn"
+                    >
+                      <ShoppingCart size={22} className="group-hover/btn:animate-bounce" />
+                    </button>
                   </div>
-                  
-                  <button className="p-4 rounded-2xl bg-[#4A3B32] text-white hover:bg-[#8C6239] shadow-lg shadow-[#4A3B32]/20 transition-all active:scale-95 group/btn">
-                    <ShoppingCart size={22} className="group-hover/btn:animate-bounce" />
-                  </button>
                 </div>
               </div>
+            ))
+          ) : (
+            <div className="col-span-full text-center py-12 text-[#6B4423]/60">
+              No products found matching your search.
             </div>
-          ))}
+          )}
         </div>
 
         {/* Floating Action/Info Section */}
@@ -135,14 +163,20 @@ export function BrewGear() {
             <div className="space-y-4">
               <h2 className="text-3xl font-bold">New Home Barista?</h2>
               <p className="text-[#D4B895] max-w-md">We're here to help you choose the right tools for your budget and coffee taste.</p>
-              <button className="px-8 py-3 bg-[#D4B895] text-[#2E1F18] rounded-xl font-bold hover:bg-white transition-colors">
+
+              {/* تم تعديل الزرار ليصبح Link */}
+              <Link
+                to="/consultation"
+                className="inline-block px-8 py-3 bg-[#D4B895] text-[#2E1F18] rounded-xl font-bold hover:bg-white transition-colors"
+              >
                 Request Free Consultation
-              </button>
+              </Link>
+
             </div>
             <div className="flex gap-8 opacity-50">
-               <Thermometer size={80} strokeWidth={1} />
-               <Wind size={80} strokeWidth={1} />
-               <Coffee size={80} strokeWidth={1} />
+              <Thermometer size={80} strokeWidth={1} />
+              <Wind size={80} strokeWidth={1} />
+              <Coffee size={80} strokeWidth={1} />
             </div>
           </div>
           <div className="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full -translate-y-1/2 translate-x-1/2 blur-3xl" />

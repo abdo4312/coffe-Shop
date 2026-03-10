@@ -21,8 +21,12 @@ import { SupportPage } from '@/pages/SupportPage'
 import { CoffeeToolsPage } from '@/pages/CoffeeToolsPage'
 import { BookingFormPage } from '@/pages/BookingFormPage'
 import { GoldenHourPage } from '@/pages/GoldenHourPage'
-
-
+import { NotFoundPage } from '@/pages/NotFoundPage'
+import { ConsultationPage } from '@/pages/ConsultationPage'
+import { LoginPage } from '@/pages/LoginPage'
+import { RegisterPage } from '@/pages/RegisterPage'
+import { ProfilePage } from '@/pages/ProfilePage'
+import { OrderSuccessPage } from '@/pages/OrderSuccessPage'
 
 function App() {
   return (
@@ -31,27 +35,37 @@ function App() {
 
       <main className="min-h-screen">
         <Routes>
+          {/* --- Main Pages --- */}
           <Route path="/" element={<HomePage />} />
           <Route path="/shop-beans" element={<ShopBeansPage />} />
           <Route path="/coffee-list" element={<CoffeeList />} />
           <Route path="/coffee/:id" element={<CoffeeDetails />} />
-          <Route path="/book-table" element={<BookingPage />} />
-          <Route path="/beans" element={<AdsPage />} />
-          <Route path="/brew-gear" element={<BrewGear />} />
-          <Route path="/gift-cards" element={<GiftCards />} />
           <Route path="/cart" element={<CartPage />} />
-          <Route path="/build-your-box" element={<BuildYourBoxPage />} />
-          <Route path="/support" element={<SupportPage />} />  {/* ← ← جديد */}
-          <Route path="/ads" element={<Navigate to="/beans" replace />} />
-          <Route path="/coffee" element={<Navigate to="/coffee-list" replace />} />
           <Route path="/checkout" element={<CheckoutPage />} />
+          <Route path="/order-success" element={<OrderSuccessPage />} /> {/* ← Route جديد */}
+
           <Route path="/about" element={<AboutPage />} />
           <Route path="/shipping" element={<ShippingPage />} />
           <Route path="/brew-guide" element={<BrewGuidePage />} />
-          <Route path="*" element={<Navigate to="/" replace />} />
-          <Route path="/coffee-tools" element={<CoffeeToolsPage />} />
+          <Route path="/support" element={<SupportPage />} />
+
+          <Route path="/book-table" element={<BookingPage />} />
           <Route path="/booking-form" element={<BookingFormPage />} />
+          <Route path="/brew-gear" element={<BrewGear />} />
+          <Route path="/gift-cards" element={<GiftCards />} />
+          <Route path="/build-your-box" element={<BuildYourBoxPage />} />
           <Route path="/golden-hour" element={<GoldenHourPage />} />
+          <Route path="/coffee-tools" element={<CoffeeToolsPage />} />
+
+          <Route path="/beans" element={<AdsPage />} />
+          <Route path="/ads" element={<Navigate to="/beans" replace />} />
+          <Route path="/coffee" element={<Navigate to="/coffee-list" replace />} />
+
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/register" element={<RegisterPage />} />
+          <Route path="/profile" element={<ProfilePage />} />
+          <Route path="/consultation" element={<ConsultationPage />} />
+          <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </main>
 

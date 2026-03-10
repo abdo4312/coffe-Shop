@@ -3,14 +3,13 @@ import { X, Plus, Star, Minus } from 'lucide-react'
 import { cn } from '@/shared/utils/cn'
 import { formatCurrency } from '@/shared/utils/formatCurrency'
 import { useQuickViewStore } from './useQuickViewStore'
-import { useCart } from '@/context/CartContext'  // ← ← Context
+import { useCart } from '@/context/CartContext'
 
 export function QuickViewModal() {
     const { isOpen, product, close } = useQuickViewStore()
-    const { addItem } = useCart()  // ← ← من Context
+    const { addItem } = useCart()
     const [quantity, setQuantity] = useState(1)
 
-    // استخراج الـ Roast من الـ tags
     const getRoastLevel = () => {
         if (!product) return undefined
         return product.tags.find(t => t.includes('roast') || t === 'cold brew') || undefined
@@ -47,16 +46,17 @@ export function QuickViewModal() {
 
     const handleAddToCart = () => {
         if (product.inStock) {
-            // إضافة الكمية المحددة
-            for (let i = 0; i < quantity; i++) {
-                addItem({
-                    id: product.id,
-                    name: product.name,
-                    price: product.price,
-                    image: product.images[0],
-                    roastLevel: getRoastLevel(),
-                })
-            }
+            // 🔴 FIX: كان فيه loop بيعمل addItem أكتر من مرة
+            // ده بيعمل multiple state updates متتالية وهو anti-pattern
+            // الصح: بنبعت الـ quantity مرة واحدة في call واحدة
+            addItem({
+                id: product.id,
+                name: product.name,
+                price: product.price,
+                image: product.images[0],
+                roastLevel: getRoastLevel(),
+                quantity, // ← بنبعت الـ quantity مباشرة
+            })
             close()
         }
     }
